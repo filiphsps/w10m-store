@@ -36,11 +36,21 @@ namespace Store.Pages
             AppVersionStr.Text = app.Version.ToString();
             AppDescStr.Text = app.Description;
             AppImg.Source = new BitmapImage(new Uri(app.LogoUrl));
+            AppTimestampStr.Text = app.Timestamp.ToLocalTime().ToString();
+            AppSizeStr.Text = app.Size.ToString();
+
+            DependencyList.ItemsSource = app.Dependencies;
+            ContributorsList.ItemsSource = app.Contributors;
         }
 
         private void InstallBtn_Click(object sender, RoutedEventArgs e)
         {
             // TODO
+        }
+
+        private void AppAuthorStr_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            // TODO: Navigate to AuthorView
         }
     }
 }
