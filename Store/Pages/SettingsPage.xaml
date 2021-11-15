@@ -9,7 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Pivot Title="Settings">
+        <!--
         <PivotItem Header="Settings"></PivotItem>
-        <PivotItem Header="About"></PivotItem>
+        -->
+        <PivotItem Header="About">
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">Store <Run x:Name="AppVersionStr" /></TextBlock>
+                <TextBlock TextWrapping="Wrap" FontFamily="Segoe MDL2 Assets">Developed with <Run Text="&#xEB52;" Foreground="#FFD61C1C" FontSize="10" /> by Filiph Sandström</TextBlock>
+            </StackPanel>
+        </PivotItem>
     </Pivot>
 </Page>

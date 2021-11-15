@@ -26,5 +26,12 @@ namespace Store
         {
             this.InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            // TODO: Fetch json from repo.
+            this.Frame.Navigate(typeof(Pages.PackagesPage));
+            this.Frame.BackStack.Remove(this.Frame.BackStack.Last());
+        }
     }
 }
