@@ -8,9 +8,11 @@ namespace Store.Models
 {
     public class RepositoryModel
     {
-        public RepositoryModel(String url) {
+        public RepositoryModel(String title, String url) {
+            this.Title = title;
             this.URL = url;
         }
+        public String Title { get; }
         public String URL { get; }
-    }
+}
 }

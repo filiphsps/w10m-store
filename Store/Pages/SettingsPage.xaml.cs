@@ -28,7 +28,9 @@ namespace Store.Pages
             this.InitializeComponent();
 
             var version = Package.Current.Id.Version;
-            AppVersionStr.Text = string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            this.AppVersionStr.Text = string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+
+            this.ReposList.ItemsSource = App.Repository.repositories;
         }
     }
 }

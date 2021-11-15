@@ -8,20 +8,40 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+    </Page.Resources>
+
     <Pivot Title="Settings">
-        <!--
         <PivotItem Header="Settings">
-            <StackPanel>
-                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Sources</TextBlock>
-                <ListView>
-                    <ListViewItem></ListViewItem>
-                </ListView>
-            </StackPanel>
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Sources</TextBlock>
+                    <ListView x:Name="ReposList" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" />
+                                    <TextBlock Text="{Binding URL}" Style="{ThemeResource CaptionTextBlockStyle}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
         </PivotItem>
-        -->
         <PivotItem Header="About">
             <StackPanel>
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Details</TextBlock>
                 <TextBlock TextWrapping="Wrap">Store <Run x:Name="AppVersionStr" /></TextBlock>
+
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,5,0,0">Credits</TextBlock>
+                <TextBlock TextWrapping="Wrap">Logo by Mada Creative from the Noun Project</TextBlock>
                 <TextBlock TextWrapping="Wrap" FontFamily="Segoe MDL2 Assets">Developed with <Run Text="&#xEB52;" Foreground="#FFD61C1C" FontSize="10" /> by Filiph Sandström</TextBlock>
             </StackPanel>
         </PivotItem>

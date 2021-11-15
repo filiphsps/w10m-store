@@ -13,7 +13,7 @@ namespace Store.Controllers
     {
         public async Task Initialize() {
             // TODO: Load repository list from disk.
-            this.repositories = new List<RepositoryModel>() { new RepositoryModel("https://raw.githubusercontent.com/w10m-research/StoreRepository/master/packages.json") };
+            this.repositories = new List<RepositoryModel>() { new RepositoryModel("Builtin", "https://raw.githubusercontent.com/w10m-research/StoreRepository/master/packages.json") };
 
             for (int n = 0; n < this.repositories.Count; n++) {
                 var repo = this.repositories[n];
