@@ -25,7 +25,7 @@
                             <ColumnDefinition Width="0.45*"/>
                             <ColumnDefinition Width="0.55*"/>
                         </Grid.ColumnDefinitions>
-                        <Image x:Name="AppImg" Grid.Column="0" Source="https://via.placeholder.com/250" Margin="0,0,15,0" />
+                        <Image x:Name="AppImg" Grid.Column="0" Stretch="Uniform" Margin="0,0,15,0" />
                         <StackPanel Grid.Column="1">
                             <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">Name</TextBlock>
                             <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}" Tapped="AppAuthorStr_Tapped">Author</TextBlock>

@@ -27,11 +27,19 @@ namespace Store
             this.InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // TODO: Fetch json from repo.
-            this.Frame.Navigate(typeof(Pages.PackagesPage));
-            this.Frame.BackStack.Remove(this.Frame.BackStack.Last());
+            //try
+            //{
+                await App.Repository.Initialize();
+
+                // TODO: use the json data
+                this.Frame.Navigate(typeof(Pages.PackagesPage));
+                this.Frame.BackStack.Remove(this.Frame.BackStack.Last());
+            /*}
+            catch {
+                // TODO: Show offline view
+            }*/
         }
     }
 }

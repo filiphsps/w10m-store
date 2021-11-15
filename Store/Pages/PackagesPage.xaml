@@ -9,8 +9,38 @@
     NavigationCacheMode="Required"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Pivot Title="Packages">
-        <PivotItem Header="All packages"></PivotItem>
+    <Page.Resources>
+        <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+    </Page.Resources>
+
+    <Pivot Title="Store">
+        <PivotItem Header="All packages">
+            <ScrollViewer>
+                <ListView x:Name="AllPkgsList" ItemClick="AllPkgsList_ItemClick" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsItemClickEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.45*"/>
+                                    <ColumnDefinition Width="0.55*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" Source="{Binding LogoUrl}" Stretch="Uniform" Margin="0,0,10,0" Height="75"/>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Title}"/>
+                                    <TextBlock Text="{Binding Author}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </PivotItem>
         <PivotItem Header="Installed"></PivotItem>
     </Pivot>
 

@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,13 @@ namespace Store.Pages
         public PackagesPage()
         {
             this.InitializeComponent();
+
+            this.AllPkgsList.ItemsSource = App.Repository.packages;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.Focus(FocusState.Programmatic);
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
@@ -35,6 +43,11 @@ namespace Store.Pages
         private void DebugBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Pages.AppPage));
+        }
+
+        private void AllPkgsList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Pages.AppPage), (Models.AppModel)e.ClickedItem);
         }
     }
 }

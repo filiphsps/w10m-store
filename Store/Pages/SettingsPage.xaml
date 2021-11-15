@@ -10,7 +10,14 @@
 
     <Pivot Title="Settings">
         <!--
-        <PivotItem Header="Settings"></PivotItem>
+        <PivotItem Header="Settings">
+            <StackPanel>
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Sources</TextBlock>
+                <ListView>
+                    <ListViewItem></ListViewItem>
+                </ListView>
+            </StackPanel>
+        </PivotItem>
         -->
         <PivotItem Header="About">
             <StackPanel>

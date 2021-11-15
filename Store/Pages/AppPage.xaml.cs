@@ -27,8 +27,11 @@ namespace Store.Pages
         public AppPage()
         {
             this.InitializeComponent();
+        }
 
-            var app = new AppModel(); 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            AppModel app = (AppModel)e.Parameter;
 
             PrimaryPivot.Title = app.Title;
             AppNameStr.Text = app.Title;
@@ -36,7 +39,9 @@ namespace Store.Pages
             AppVersionStr.Text = app.Version.ToString();
             AppDescStr.Text = app.Description;
             AppImg.Source = new BitmapImage(new Uri(app.LogoUrl));
-            AppTimestampStr.Text = app.Timestamp.ToLocalTime().ToString();
+
+            if (app.Timestamp != null)
+                AppTimestampStr.Text = app.Timestamp.ToLocalTime().ToString("dd MMMM yyyy");
             AppSizeStr.Text = app.Size.ToString();
 
             DependencyList.ItemsSource = app.Dependencies;
