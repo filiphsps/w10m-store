@@ -11,18 +11,26 @@ namespace Store.Controllers
 {
     public class RepositoryController
     {
-        // TODO: Load repository list from disk.
         public async Task Initialize() {
-            var client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(new Uri("https://raw.githubusercontent.com/w10m-research/StoreRepository/master/packages.json"));
-            JArray packages = JArray.Parse(await response.Content.ReadAsStringAsync());
+            // TODO: Load repository list from disk.
+            this.repositories = new List<RepositoryModel>() { new RepositoryModel("https://raw.githubusercontent.com/w10m-research/StoreRepository/master/packages.json") };
 
-            // TODO: do this properly
-            for (int i = 0; i < packages.Count; i++) {
-                this.packages.Add(new AppModel(JObject.Parse(packages[i].ToString())));
+            for (int n = 0; n < this.repositories.Count; n++) {
+                var repo = this.repositories[n];
+
+                var client = new HttpClient();
+                HttpResponseMessage response = await client.GetAsync(new Uri(repo.URL));
+                JArray packages = JArray.Parse(await response.Content.ReadAsStringAsync());
+
+                for (int i = 0; i < packages.Count; i++) {
+                    // TODO: do this properly
+                    var obj = JObject.Parse(packages[i].ToString());
+                    this.packages.Add((String)obj["namespace"], new AppModel(obj));
+                }
             }
         }
 
-        public List<AppModel> packages { get; } = new List<AppModel>();
+        public List<RepositoryModel> repositories { get; set; } // TODO: this should only be get.
+        public Dictionary<String, AppModel> packages { get; } = new Dictionary<String, AppModel>();
     }
 }

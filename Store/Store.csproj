@@ -124,6 +124,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AppModel.cs" />
+    <Compile Include="Models\RepositoryModel.cs" />
     <Compile Include="Pages\AppPage.xaml.cs">
       <DependentUpon>AppPage.xaml</DependentUpon>
     </Compile>

@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -34,7 +35,7 @@ namespace Store
                 await App.Repository.Initialize();
 
                 // TODO: use the json data
-                this.Frame.Navigate(typeof(Pages.PackagesPage));
+                this.Frame.Navigate(typeof(Pages.PackagesPage), null, new DrillInNavigationTransitionInfo());
                 this.Frame.BackStack.Remove(this.Frame.BackStack.Last());
             /*}
             catch {

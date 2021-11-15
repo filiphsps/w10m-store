@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,27 +28,23 @@ namespace Store.Pages
         {
             this.InitializeComponent();
 
-            this.AllPkgsList.ItemsSource = App.Repository.packages;
+            this.AllPkgsList.ItemsSource = App.Repository.packages.Values;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.Focus(FocusState.Programmatic);
+            base.OnNavigatedTo(e);
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Pages.SettingsPage));
-        }
-
-        private void DebugBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Pages.AppPage));
+            this.Frame.Navigate(typeof(Pages.SettingsPage), null, new EntranceNavigationTransitionInfo());
         }
 
         private void AllPkgsList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.Frame.Navigate(typeof(Pages.AppPage), (Models.AppModel)e.ClickedItem);
+            AllPkgsList.PrepareConnectedAnimation("ForwardConnectedAnimation", e.ClickedItem, "LogoImg");
+            this.Frame.Navigate(typeof(Pages.AppPage), (Models.AppModel)e.ClickedItem, new SuppressNavigationTransitionInfo());
         }
     }
 }

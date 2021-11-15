@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    NavigationCacheMode="Required"
+    
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -22,18 +22,23 @@
         <PivotItem Header="All packages">
             <ScrollViewer>
                 <ListView x:Name="AllPkgsList" ItemClick="AllPkgsList_ItemClick" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsItemClickEnabled="True">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition IsStaggeringEnabled="True" />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.45*"/>
-                                    <ColumnDefinition Width="0.55*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="0.75*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Grid.Column="0" Source="{Binding LogoUrl}" Stretch="Uniform" Margin="0,0,10,0" Height="75"/>
+                                <Image Grid.Column="0" x:Name="LogoImg" Source="{Binding LogoUrl}" Stretch="Uniform" Margin="0,0,10,0" />
                                 <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
-                                    <TextBlock Text="{Binding Title}"/>
-                                    <TextBlock Text="{Binding Author}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding Author}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
@@ -46,8 +51,11 @@
 
     <Page.BottomAppBar>
         <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="DownloadsBtn" Icon="Download" Label="Downloads" IsEnabled="False"/>
+            </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="DebugBtn" Icon="Emoji" Label="Debug" Click="DebugBtn_Click" />
+                <AppBarButton x:Name="DonateBtn" Icon="OutlineStar" Label="Support the developers" IsEnabled="False" />
                 <AppBarButton x:Name="SettingsBtn" Icon="Setting" Label="Settings" Click="SettingsBtn_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>

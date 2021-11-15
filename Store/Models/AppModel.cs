@@ -36,9 +36,13 @@ namespace Store.Models
     {
         public AppModel(JObject data) {
             this.Namespace = (String)data["namespace"];
+            this.Version = new Version((String)data["version"]);
+            try {
+                // TODO: enforce this on the repo-side
+                this.Timestamp = DateTime.Parse((String)data["date"]);
+            } catch { }
             this.Title = (String)data["title"];
             this.Author = (String)data["author"];
-            this.Version = new Version((String)data["version"]);
             this.Description = (String)data["description"];
             this.LogoUrl = (String)data["logo_url"];
             this.Size = (Double)data["size"];

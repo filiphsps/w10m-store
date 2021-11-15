@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
 using Store.Models;
+using Windows.UI.Xaml.Media.Animation;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,7 +33,18 @@ namespace Store.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            var anim = ConnectedAnimationService.GetForCurrentView().GetAnimation("ForwardConnectedAnimation");
+            if (anim != null)
+            {
+                anim.TryStart(this.AppImg);
+            }
+
             AppModel app = (AppModel)e.Parameter;
+
+            if (app == null) {
+                // TODO: show error
+                return;
+            }
 
             PrimaryPivot.Title = app.Title;
             AppNameStr.Text = app.Title;
@@ -46,6 +59,8 @@ namespace Store.Pages
 
             DependencyList.ItemsSource = app.Dependencies;
             ContributorsList.ItemsSource = app.Contributors;
+
+            base.OnNavigatedTo(e);
         }
 
         private void InstallBtn_Click(object sender, RoutedEventArgs e)

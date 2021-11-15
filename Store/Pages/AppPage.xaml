@@ -22,11 +22,12 @@
                 <StackPanel>
                     <Grid Margin="0,10,0,20">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.45*"/>
-                            <ColumnDefinition Width="0.55*"/>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <Image x:Name="AppImg" Grid.Column="0" Stretch="Uniform" Margin="0,0,15,0" />
-                        <StackPanel Grid.Column="1">
+                        
+                        <Image x:Name="AppImg" Grid.Column="0" Stretch="Uniform" Height="130" Width="130" />
+                        <StackPanel Grid.Column="1" Margin="15,0,0,0" >
                             <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">Name</TextBlock>
                             <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}" Tapped="AppAuthorStr_Tapped">Author</TextBlock>
                             <TextBlock x:Name="AppVersionStr" Style="{ThemeResource CaptionTextBlockStyle}">Version</TextBlock>
