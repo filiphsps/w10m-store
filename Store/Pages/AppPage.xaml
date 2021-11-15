@@ -22,15 +22,16 @@
                 <StackPanel>
                     <Grid Margin="0,10,0,20">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="130"/>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        
-                        <Image x:Name="AppImg" Grid.Column="0" Stretch="Uniform" Height="130" Width="130" />
-                        <StackPanel Grid.Column="1" Margin="15,0,0,0" >
+
+                        <Border x:Name="AppImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                            <Image x:Name="AppImg" Stretch="Uniform" Height="130" Width="130" />
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Stretch">
                             <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">Name</TextBlock>
                             <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}" Tapped="AppAuthorStr_Tapped">Author</TextBlock>
-                            <TextBlock x:Name="AppVersionStr" Style="{ThemeResource CaptionTextBlockStyle}">Version</TextBlock>
                             <Button x:Name="InstallBtn" HorizontalAlignment="Stretch" Margin="0,15,0,-4" Click="InstallBtn_Click">Install</Button>
                             <ProgressBar x:Name="Progress" Value="0" Background="Transparent" />
                         </StackPanel>
@@ -43,9 +44,22 @@
             <ScrollViewer ScrollViewer.VerticalScrollMode="Enabled">
                 <StackPanel>
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Information</TextBlock>
-                    <TextBlock>Namespace: <Run x:Name="AppNsStr" /></TextBlock>
-                    <TextBlock>Last updated: <Run x:Name="AppTimestampStr" /></TextBlock>
-                    <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB</TextBlock>
+                    <TextBlock>Version: <Run x:Name="AppVersionStr" />.</TextBlock>
+                    <TextBlock>Namespace: <Run x:Name="AppNsStr" />.</TextBlock>
+                    <TextBlock>Last updated: <Run x:Name="AppTimestampStr" />.</TextBlock>
+                    <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB.</TextBlock>
+
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Contributors</TextBlock>
+                    <ListView x:Name="ContributorsList" SelectionMode="None" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Role}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Dependencies</TextBlock>
                     <ListView x:Name="DependencyList" SelectionMode="None" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
@@ -57,18 +71,6 @@
                                         <TextBlock Text="{Binding Namespace}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,5,0"/>
                                         <TextBlock Text="{Binding Version}" Style="{ThemeResource CaptionTextBlockStyle}"/>
                                     </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Contributors</TextBlock>
-                    <ListView x:Name="ContributorsList" SelectionMode="None" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Name}"/>
-                                    <TextBlock Text="{Binding Role}" Style="{ThemeResource CaptionTextBlockStyle}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

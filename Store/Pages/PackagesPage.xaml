@@ -35,7 +35,9 @@
                                     <ColumnDefinition Width="0.75*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Grid.Column="0" x:Name="LogoImg" Source="{Binding LogoUrl}" Stretch="Uniform" Margin="0,0,10,0" />
+                                <Border x:Name="LogoImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Margin="0,0,10,0">
+                                    <Image x:Name="LogoImg" Source="{Binding LogoUrl}" Stretch="Uniform" />
+                                </Border>
                                 <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
                                     <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"/>
                                     <TextBlock Text="{Binding Author}" Style="{ThemeResource SubtitleTextBlockStyle}"/>

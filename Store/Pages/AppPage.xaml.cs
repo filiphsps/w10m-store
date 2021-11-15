@@ -39,7 +39,7 @@ namespace Store.Pages
             base.OnNavigatedTo(e);
 
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("appLogoIn");
-            animation?.TryStart(this.AppImg);
+            animation?.TryStart(this.AppImgWrapper);
 
             this.app = (AppModel)e.Parameter;
 
@@ -68,7 +68,7 @@ namespace Store.Pages
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            // ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("appLogoOut", this.AppImg);
+            // ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("appLogoOut", this.AppImgWrapper);
         }
 
         private void InstallBtn_Click(object sender, RoutedEventArgs e)

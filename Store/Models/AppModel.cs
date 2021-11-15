@@ -46,8 +46,8 @@ namespace Store.Models
             this.Description = (String)data["description"];
             this.LogoUrl = (String)data["logo_url"];
             this.Size = (Double)data["size"];
-            // TODO: Contributors.
-            // TODO: Dependencies.
+            this.Contributors = (List<AppAuthor>)data["contributors"].ToObject<List<AppAuthor>>();
+            this.Dependencies = (List<AppDependency>)data["dependencies"].ToObject<List<AppDependency>>();
         }
 
         public String Namespace { get; }

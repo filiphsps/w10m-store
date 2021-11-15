@@ -30,18 +30,18 @@ namespace Store
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            try {
                 await App.Repository.Initialize();
                 await App.Repository.Settings.Save();
 
                 // TODO: use the json data
                 this.Frame.Navigate(typeof(Pages.PackagesPage), null, new DrillInNavigationTransitionInfo());
                 this.Frame.BackStack.Remove(this.Frame.BackStack.Last());
-            /*}
-            catch {
+            } catch (Exception ex) {
                 // TODO: Show offline view
-            }*/
+                var alert = new Windows.UI.Popups.MessageDialog(ex.Message, "Something went wrong :(");
+                alert.ShowAsync();
+            }
         }
     }
 }
