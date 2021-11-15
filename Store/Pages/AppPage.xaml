@@ -43,6 +43,7 @@
             <ScrollViewer ScrollViewer.VerticalScrollMode="Enabled">
                 <StackPanel>
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Information</TextBlock>
+                    <TextBlock>Namespace: <Run x:Name="AppNsStr" /></TextBlock>
                     <TextBlock>Last updated: <Run x:Name="AppTimestampStr" /></TextBlock>
                     <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB</TextBlock>
 
@@ -76,4 +77,8 @@
             </ScrollViewer>
         </PivotItem>
     </Pivot>
+
+    <Page.BottomAppBar>
+        <CommandBar></CommandBar>
+    </Page.BottomAppBar>
 </Page>

@@ -41,8 +41,8 @@
                 <TextBlock TextWrapping="Wrap">Store <Run x:Name="AppVersionStr" /></TextBlock>
 
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,5,0,0">Credits</TextBlock>
-                <TextBlock TextWrapping="Wrap">Logo by Mada Creative from the Noun Project</TextBlock>
-                <TextBlock TextWrapping="Wrap" FontFamily="Segoe MDL2 Assets">Developed with <Run Text="&#xEB52;" Foreground="#FFD61C1C" FontSize="10" /> by Filiph Sandström</TextBlock>
+                <TextBlock TextWrapping="Wrap">Logo by Mada Creative from the Noun Project.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontFamily="Segoe MDL2 Assets">Developed with <Run Text="&#xEB52;" Foreground="#FFD61C1C" FontSize="10" /> by Filiph Sandström.</TextBlock>
             </StackPanel>
         </PivotItem>
     </Pivot>

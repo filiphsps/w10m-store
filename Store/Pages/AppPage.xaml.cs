@@ -46,19 +46,21 @@ namespace Store.Pages
                 return;
             }
 
-            PrimaryPivot.Title = app.Title;
-            AppNameStr.Text = app.Title;
-            AppAuthorStr.Text = app.Author;
-            AppVersionStr.Text = app.Version.ToString();
-            AppDescStr.Text = app.Description;
-            AppImg.Source = new BitmapImage(new Uri(app.LogoUrl));
+            this.PrimaryPivot.Title = app.Title;
+            this.AppNsStr.Text = app.Namespace;
+            this.AppNameStr.Text = app.Title;
+            this.AppAuthorStr.Text = app.Author;
+            this.AppVersionStr.Text = app.Version.ToString();
+            this.AppDescStr.Text = app.Description;
+            this.AppImg.Source = new BitmapImage(new Uri(app.LogoUrl));
 
             if (app.Timestamp != null)
-                AppTimestampStr.Text = app.Timestamp.ToLocalTime().ToString("dd MMMM yyyy");
-            AppSizeStr.Text = app.Size.ToString();
+                this.AppTimestampStr.Text = app.Timestamp.ToLocalTime().ToString("dd MMMM yyyy");
 
-            DependencyList.ItemsSource = app.Dependencies;
-            ContributorsList.ItemsSource = app.Contributors;
+            this.AppSizeStr.Text = app.Size.ToString();
+
+            this.DependencyList.ItemsSource = app.Dependencies;
+            this.ContributorsList.ItemsSource = app.Contributors;
 
             base.OnNavigatedTo(e);
         }

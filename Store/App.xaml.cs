@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Store.Controllers;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace Store
 {
@@ -110,7 +111,7 @@ namespace Store
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame.CanGoBack)
             {
-                rootFrame.GoBack();
+                rootFrame.GoBack(new EntranceNavigationTransitionInfo());
                 e.Handled = true;
             }
         }
