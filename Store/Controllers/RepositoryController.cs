@@ -11,9 +11,14 @@ namespace Store.Controllers
 {
     public class RepositoryController
     {
+        public RepositoryController() {
+            this.Settings = new SettingsController();
+        }
+
         public async Task Initialize() {
-            // TODO: Load repository list from disk.
-            this.repositories = new List<RepositoryModel>() { new RepositoryModel("Builtin", "https://raw.githubusercontent.com/w10m-research/StoreRepository/master/packages.json") };
+            await this.Settings.Initialize();
+
+            this.repositories = this.Settings.Config.Repositories; 
 
             for (int n = 0; n < this.repositories.Count; n++) {
                 var repo = this.repositories[n];
@@ -30,6 +35,7 @@ namespace Store.Controllers
             }
         }
 
+        public SettingsController Settings { get; }
         public List<RepositoryModel> repositories { get; set; } // TODO: this should only be get.
         public Dictionary<String, AppModel> packages { get; } = new Dictionary<String, AppModel>();
     }

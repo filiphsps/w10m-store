@@ -29,6 +29,8 @@ namespace Store.Pages
         public AppPage()
         {
             this.InitializeComponent();
+
+            // TODO: Add connected animation back too.
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

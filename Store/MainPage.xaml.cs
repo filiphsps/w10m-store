@@ -33,6 +33,7 @@ namespace Store
             //try
             //{
                 await App.Repository.Initialize();
+                await App.Repository.Settings.Save();
 
                 // TODO: use the json data
                 this.Frame.Navigate(typeof(Pages.PackagesPage), null, new DrillInNavigationTransitionInfo());

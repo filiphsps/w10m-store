@@ -21,8 +21,12 @@
         <PivotItem Header="Settings">
             <ScrollViewer>
                 <StackPanel>
+                    <Border x:Name="RestartWarnPopup" BorderBrush="{ThemeResource CheckBoxBorderThemeBrush}" BorderThickness="0,0,0,1" Padding="0,10" Margin="0,0,0,10" Visibility="Collapsed">
+                        <TextBlock TextWrapping="Wrap">You need to restart the app for changes to take effect</TextBlock>
+                    </Border>
+
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Sources</TextBlock>
-                    <ListView x:Name="ReposList" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
+                    <ListView x:Name="ReposList" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsMultiSelectCheckBoxEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -46,4 +50,14 @@
             </StackPanel>
         </PivotItem>
     </Pivot>
+    
+    <!-- TODO: Hide when about is shown -->
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="RemoveRepoBtn" Icon="Remove" Label="Remove Selected" IsEnabled="False" />
+                <AppBarButton x:Name="AddRepoBtn" Icon="Add" Label="Add Repository" IsEnabled="False" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
