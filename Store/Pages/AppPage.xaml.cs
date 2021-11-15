@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Store.Models;
 using Windows.UI.Xaml.Media.Animation;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,45 +27,48 @@ namespace Store.Pages
     /// </summary>
     public sealed partial class AppPage : Page
     {
+        private AppModel app;
+
         public AppPage()
         {
             this.InitializeComponent();
-
-            // TODO: Add connected animation back too.
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var anim = ConnectedAnimationService.GetForCurrentView().GetAnimation("ForwardConnectedAnimation");
-            if (anim != null)
-            {
-                anim.TryStart(this.AppImg);
-            }
+            base.OnNavigatedTo(e);
 
-            AppModel app = (AppModel)e.Parameter;
+            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("appLogoIn");
+            animation?.TryStart(this.AppImg);
 
-            if (app == null) {
+            this.app = (AppModel)e.Parameter;
+
+            if (this.app == null) {
                 // TODO: show error
                 return;
             }
 
-            this.PrimaryPivot.Title = app.Title;
-            this.AppNsStr.Text = app.Namespace;
-            this.AppNameStr.Text = app.Title;
-            this.AppAuthorStr.Text = app.Author;
-            this.AppVersionStr.Text = app.Version.ToString();
-            this.AppDescStr.Text = app.Description;
-            this.AppImg.Source = new BitmapImage(new Uri(app.LogoUrl));
+            this.PrimaryPivot.Title = this.app.Title;
+            this.AppNsStr.Text = this.app.Namespace;
+            this.AppNameStr.Text = this.app.Title;
+            this.AppAuthorStr.Text = this.app.Author;
+            this.AppVersionStr.Text = this.app.Version.ToString();
+            this.AppDescStr.Text = this.app.Description;
+            this.AppImg.Source = new BitmapImage(new Uri(this.app.LogoUrl));
 
-            if (app.Timestamp != null)
-                this.AppTimestampStr.Text = app.Timestamp.ToLocalTime().ToString("dd MMMM yyyy");
+            if (this.app.Timestamp != null)
+                this.AppTimestampStr.Text = this.app.Timestamp.ToLocalTime().ToString("dd MMMM yyyy");
 
-            this.AppSizeStr.Text = app.Size.ToString();
+            this.AppSizeStr.Text = this.app.Size.ToString();
 
-            this.DependencyList.ItemsSource = app.Dependencies;
-            this.ContributorsList.ItemsSource = app.Contributors;
+            this.DependencyList.ItemsSource = this.app.Dependencies;
+            this.ContributorsList.ItemsSource = this.app.Contributors;
+        }
 
-            base.OnNavigatedTo(e);
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            // ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("appLogoOut", this.AppImg);
         }
 
         private void InstallBtn_Click(object sender, RoutedEventArgs e)

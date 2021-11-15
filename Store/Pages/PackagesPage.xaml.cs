@@ -24,6 +24,8 @@ namespace Store.Pages
     /// </summary>
     public sealed partial class PackagesPage : Page
     {
+        private Models.AppModel lastItem;
+
         public PackagesPage()
         {
             this.InitializeComponent();
@@ -31,9 +33,15 @@ namespace Store.Pages
             this.AllPkgsList.ItemsSource = App.Repository.packages.Values;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("appLogoOut");
+            if (animation != null)
+            {
+                await AllPkgsList.TryStartConnectedAnimationAsync(animation, this.lastItem, "LogoImg");
+            }
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
@@ -43,7 +51,8 @@ namespace Store.Pages
 
         private void AllPkgsList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            AllPkgsList.PrepareConnectedAnimation("ForwardConnectedAnimation", e.ClickedItem, "LogoImg");
+            this.lastItem = (Models.AppModel)e.ClickedItem;
+            AllPkgsList.PrepareConnectedAnimation("appLogoIn", e.ClickedItem, "LogoImg");
             this.Frame.Navigate(typeof(Pages.AppPage), (Models.AppModel)e.ClickedItem, new SuppressNavigationTransitionInfo());
         }
     }
