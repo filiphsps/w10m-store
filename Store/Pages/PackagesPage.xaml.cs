@@ -30,7 +30,7 @@ namespace Store.Pages
         {
             this.InitializeComponent();
 
-            this.AllPkgsList.ItemsSource = App.Repository.packages.Values;
+            this.AllPkgsList.ItemsSource = App.Repository.Packages.Values;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

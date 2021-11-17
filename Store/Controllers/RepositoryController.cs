@@ -18,10 +18,11 @@ namespace Store.Controllers
         public async Task Initialize() {
             await this.Settings.Initialize();
 
-            this.repositories = this.Settings.Config.Repositories; 
+            this.Repositories = this.Settings.Config.Repositories; 
 
-            for (int n = 0; n < this.repositories.Count; n++) {
-                var repo = this.repositories[n];
+            // Fetch packages
+            for (int n = 0; n < this.Repositories.Count; n++) {
+                var repo = this.Repositories[n];
 
                 var client = new HttpClient();
                 HttpResponseMessage response = await client.GetAsync(new Uri(repo.URL));
@@ -30,13 +31,17 @@ namespace Store.Controllers
                 for (int i = 0; i < packages.Count; i++) {
                     // TODO: do this properly
                     var obj = JObject.Parse(packages[i].ToString());
-                    this.packages.Add((String)obj["namespace"], new AppModel(obj));
+                    this.Packages.Add((String)obj["namespace"], new AppModel(obj));
                 }
             }
+
+            // Sort packages based on title
+            // TODO: do this properly
+            this.Packages = this.Packages.OrderBy(i => i.Value.Title).ToDictionary(x => x.Key, x => x.Value);
         }
 
         public SettingsController Settings { get; }
-        public List<RepositoryModel> repositories { get; set; } // TODO: this should only be get.
-        public Dictionary<String, AppModel> packages { get; } = new Dictionary<String, AppModel>();
+        public List<RepositoryModel> Repositories { get; set; } // TODO: this should only be get.
+        public Dictionary<String, AppModel> Packages { get; set; } = new Dictionary<String, AppModel>();
     }
 }
