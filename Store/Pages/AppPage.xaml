@@ -35,7 +35,12 @@
                             <Button x:Name="InstallBtn" HorizontalAlignment="Stretch" Margin="0,15,0,0" Click="InstallBtn_Click">Install</Button>
                         </StackPanel>
                     </Grid>
-                    <TextBlock x:Name="AppDescStr" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}">AppDescription</TextBlock>
+                    <TextBlock
+                        x:Name="AppDescStr"
+                        TextWrapping="Wrap"
+                        Style="{ThemeResource BodyTextBlockStyle}">
+                        AppDescription
+                    </TextBlock>
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
@@ -48,32 +53,40 @@
                     <TextBlock x:Name="AppTimestamp">Last updated: <Run x:Name="AppTimestampStr" />.</TextBlock>
                     <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB.</TextBlock>
 
-                    <TextBlock x:Name="ContributorsListTitle" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Contributors</TextBlock>
-                    <ListView x:Name="ContributorsList" SelectionMode="None" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
+                    <TextBlock
+                        x:Name="ContributorsListTitle"
+                        Style="{ThemeResource SubtitleTextBlockStyle}"
+                        Margin="0,15,0,0">
+                        Contributors
+                    </TextBlock>
+                    <ListView
+                        x:Name="ContributorsList"
+                        SelectionMode="None"
+                        ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                        ScrollViewer.VerticalScrollMode="Disabled">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
                                     <TextBlock Text="{Binding Name}"/>
-                                    <TextBlock Text="{Binding Role}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                    <TextBlock
+                                        Text="{Binding Role}"
+                                        Style="{ThemeResource CaptionTextBlockStyle}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <TextBlock x:Name="DependencyListTitle" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Dependencies</TextBlock>
-                    <ListView x:Name="DependencyList" SelectionMode="None" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Title}"/>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Namespace}" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,5,0"/>
-                                        <TextBlock Text="{Binding Version}" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <TextBlock
+                        x:Name="DependencyListTitle"
+                        Style="{ThemeResource SubtitleTextBlockStyle}"
+                        Margin="0,15,0,0">
+                        Dependencies
+                    </TextBlock>
+                    <ListView
+                        x:Name="DependencyList"
+                        SelectionMode="None"
+                        ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                        ScrollViewer.VerticalScrollMode="Disabled" />
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>

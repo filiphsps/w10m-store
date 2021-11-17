@@ -120,7 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\DownloadController.cs" />
-    <Compile Include="Controllers\RepositoryController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

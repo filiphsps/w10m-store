@@ -49,7 +49,7 @@ namespace Store.Pages
             }
 
             this.PrimaryPivot.Title = this.app.Title;
-            this.AppNsStr.Text = this.app.Namespace;
+            this.AppNsStr.Text = this.app.ID;
             this.AppNameStr.Text = this.app.Title;
             this.AppAuthorStr.Text = this.app.Author;
             this.AppVersionStr.Text = this.app.Version.ToString();

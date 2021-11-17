@@ -32,7 +32,7 @@ namespace Store.Models
 
     public class AppModel {
         public AppModel(JObject data) {
-            this.Namespace = (String)data["namespace"];
+            this.ID = (String)data["id"];
             this.Version = new Version((String)data["version"]);
 
             if (data.ContainsKey("date")) {
@@ -47,10 +47,10 @@ namespace Store.Models
             this.LogoUrl = (String)data["logo_url"];
             this.Size = (Double)data["size"];
             this.Contributors = (List<AppAuthor>)data["contributors"].ToObject<List<AppAuthor>>();
-            this.Dependencies = (List<AppDependency>)data["dependencies"].ToObject<List<AppDependency>>();
+            this.Dependencies = (List<String>)data["dependencies"].ToObject<List<String>>();
         }
 
-        public String Namespace { get; }
+        public String ID { get; }
         public Version Version { get; }
         public DateTime? Timestamp { get; } = null;
         public String Title { get; }
@@ -59,6 +59,6 @@ namespace Store.Models
         public String Description { get; }
         public String LogoUrl { get; }
         public Double Size { get; }
-        public List<AppDependency> Dependencies { get; }
+        public List<String> Dependencies { get; }
     }
 }

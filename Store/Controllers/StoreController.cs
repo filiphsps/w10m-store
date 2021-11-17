@@ -29,7 +29,7 @@ namespace Store.Controllers
                 for (Int32 i = 0; i < packages.Count; i++) {
                     // TODO: do this properly
                     var obj = JObject.Parse(packages[i].ToString());
-                    this.Packages.Add((String)obj["namespace"], new AppModel(obj));
+                    this.Packages.Add((String)obj["id"], new AppModel(obj));
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace Store.Controllers
                 for (Int32 i = 0; i < dependencies.Count; i++) {
                     // TODO: do this properly
                     var obj = JObject.Parse(dependencies[i].ToString());
-                    this.Dependencies.Add((String)obj["namespace"], obj.ToObject<AppDependency>());
+                    this.Dependencies.Add((String)obj["id"], obj.ToObject<AppDependency>());
                 }
             }
         }
