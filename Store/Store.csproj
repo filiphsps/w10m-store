@@ -146,6 +146,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include=".editorconfig" />
     <None Include="Store_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
