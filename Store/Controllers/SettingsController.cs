@@ -26,9 +26,9 @@ namespace Store.Controllers
         }
 
         public async Task Save() {
-            var appData = Windows.Storage.ApplicationData.Current.LocalFolder;
-            var configFile = await appData.GetFileAsync("config.json");
-            await Windows.Storage.FileIO.WriteTextAsync(configFile, JsonConvert.SerializeObject(this.Config));
+            // var appData = Windows.Storage.ApplicationData.Current.LocalFolder;
+            // var configFile = await appData.GetFileAsync("config.json");
+            // await Windows.Storage.FileIO.WriteTextAsync(configFile, JsonConvert.SerializeObject(this.Config));
         }
 
         public Models.ConfigModel Config { get; set; }

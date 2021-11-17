@@ -37,12 +37,12 @@ namespace Store.Pages
             this.app = (AppModel)e.Parameter;
         }
 
-        private void ActionBtn_Click(object sender, RoutedEventArgs e)
+        private void ActionBtn_Click(Object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        private void CancelBtn_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
         }

@@ -28,11 +28,12 @@ namespace Store
             this.InitializeComponent();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(Object sender, RoutedEventArgs e)
         {
             try {
                 await App.Repository.Initialize();
-                await App.Repository.Settings.Save();
+
+                try { await App.Repository.Settings.Save(); } catch { }
 
                 // TODO: use the json data
                 this.Frame.Navigate(typeof(Pages.PackagesPage), null, new DrillInNavigationTransitionInfo());
@@ -40,7 +41,7 @@ namespace Store
             } catch (Exception ex) {
                 // TODO: Show offline view
                 var alert = new Windows.UI.Popups.MessageDialog(ex.Message, "Something went wrong :(");
-                alert.ShowAsync();
+                await alert.ShowAsync();
             }
         }
     }

@@ -79,12 +79,12 @@ namespace Store.Pages
             // ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("appLogoOut", this.AppImgWrapper);
         }
 
-        private void InstallBtn_Click(object sender, RoutedEventArgs e)
+        private void InstallBtn_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Pages.InstallerPage), this.app);
         }
 
-        private void AppAuthorStr_Tapped(object sender, TappedRoutedEventArgs e)
+        private void AppAuthorStr_Tapped(Object sender, TappedRoutedEventArgs e)
         {
             // TODO: Navigate to AuthorView
         }
