@@ -18,10 +18,8 @@ namespace Store.Models
         public String Role { get; }
     }
 
-    public class AppDependency
-    {
-        public AppDependency(String title, String ns, Version version)
-        {
+    public class AppDependency {
+        public AppDependency(String title, String ns, Version version) {
             this.Title = title;
             this.Namespace = ns;
             this.Version = version;
@@ -32,8 +30,7 @@ namespace Store.Models
         public Version Version { get; }
     }
 
-    public class AppModel
-    {
+    public class AppModel {
         public AppModel(JObject data) {
             this.Namespace = (String)data["namespace"];
             this.Version = new Version((String)data["version"]);

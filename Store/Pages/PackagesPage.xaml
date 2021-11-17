@@ -38,7 +38,15 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Border x:Name="LogoImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-                                        <Image x:Name="LogoImg" Source="{Binding LogoUrl}" Stretch="Uniform" />
+                                        <Image x:Name="LogoImg" Stretch="Uniform">
+                                            <Image.Source>
+                                                <Binding Path="LogoUrl" >
+                                                    <Binding.TargetNullValue>
+                                                        <ImageSource>/Images/PlaceholderAppIcon.png</ImageSource>
+                                                    </Binding.TargetNullValue>
+                                                </Binding>
+                                            </Image.Source>
+                                        </Image>
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,-5,0,0">
                                         <TextBlock Text="{Binding Title}" FontSize="20" LineHeight="20"/>
