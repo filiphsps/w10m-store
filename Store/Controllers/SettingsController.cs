@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using System.Threading.Tasks;
 
-namespace Store.Controllers
-{
-    public class SettingsController
-    {
-        public async Task Initialize() {
+namespace Store.Controllers {
+    internal sealed class SettingsController {
+        internal async Task Initialize() {
+            /*
+            TODO: implementation cache loading
             var appData = Windows.Storage.ApplicationData.Current.LocalFolder;
-            /*try
+            try
             {
                 var configFile = await appData.GetFileAsync("config.json");
                 this.Config = JsonConvert.DeserializeObject<Models.ConfigModel>(await Windows.Storage.FileIO.ReadTextAsync(configFile));
@@ -25,12 +18,13 @@ namespace Store.Controllers
             }*/
         }
 
-        public async Task Save() {
+        internal async Task Save() {
+            // TODO: implementation cache saving
             // var appData = Windows.Storage.ApplicationData.Current.LocalFolder;
             // var configFile = await appData.GetFileAsync("config.json");
             // await Windows.Storage.FileIO.WriteTextAsync(configFile, JsonConvert.SerializeObject(this.Config));
         }
 
-        public Models.ConfigModel Config { get; set; }
+        internal Models.ConfigModel Config { get; private set; }
     }
 }

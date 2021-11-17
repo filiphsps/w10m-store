@@ -5,10 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace Store.Models
-{
-    public class AppAuthor
-    {
+namespace Store.Models {
+    internal sealed class AppAuthor {
         public AppAuthor(String name, String role = "Contributor") {
             this.Name = name;
             this.Role = role;
@@ -18,7 +16,7 @@ namespace Store.Models
         public String Role { get; }
     }
 
-    public class AppDependency {
+    public sealed class AppDependency {
         public AppDependency(String title, String ns, Version version) {
             this.Title = title;
             this.Namespace = ns;
@@ -30,10 +28,11 @@ namespace Store.Models
         public Version Version { get; }
     }
 
-    public class AppModel {
+    internal sealed class AppModel {
         public AppModel(JObject data) {
-            this.ID = (String)data["id"];
-            this.Version = new Version((String)data["version"]);
+            this.Id = (String)data["id"];
+            // TODO: string can't be empty... sanity checks
+            this.Version = new Version((String)data["version"] ?? String.Empty);
 
             if (data.ContainsKey("date")) {
                 try {
@@ -46,13 +45,13 @@ namespace Store.Models
             this.Description = (String)data["description"];
             this.LogoUrl = (String)data["logo_url"];
             this.Size = (Double)data["size"];
-            this.Contributors = (List<AppAuthor>)data["contributors"].ToObject<List<AppAuthor>>();
-            this.Dependencies = (List<String>)data["dependencies"].ToObject<List<String>>();
+            this.Contributors = data["contributors"].ToObject<List<AppAuthor>>();
+            this.Dependencies = data["dependencies"].ToObject<List<String>>();
         }
 
-        public String ID { get; }
+        public String Id { get; }
         public Version Version { get; }
-        public DateTime? Timestamp { get; } = null;
+        public DateTime? Timestamp { get; }
         public String Title { get; }
         public String Author { get; }
         public List<AppAuthor> Contributors { get; }

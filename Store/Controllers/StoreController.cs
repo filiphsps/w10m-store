@@ -1,53 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Store.Models;
 
-namespace Store.Controllers
-{
-    public class StoreController
-    {
+namespace Store.Controllers {
+    internal sealed class StoreController {
         public StoreController() {
             this.Settings = new SettingsController();
             this.Downloads = new DownloadController();
         }
 
-        private async Task updatePackages() {
+        private async Task UpdatePackages() {
             this.Packages.Clear();
 
-            for (Int32 n = 0; n < this.Repositories.Count; n++) {
-                var repo = this.Repositories[n];
-
+            foreach (RepositoryModel repo in this.Repositories) {
                 var client = new HttpClient();
-                HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.URL, "packages.json")));
+                HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.Url, "packages.json")));
                 var packages = JArray.Parse(await response.Content.ReadAsStringAsync());
-
-                for (Int32 i = 0; i < packages.Count; i++) {
-                    // TODO: do this properly
-                    var obj = JObject.Parse(packages[i].ToString());
-                    this.Packages.Add((String)obj["id"], new AppModel(obj));
+                foreach (JObject obj in packages.Select(package => JObject.Parse(package.ToString()))) {
+                    // TODO: validate ID, can't be null
+                    this.Packages.Add((String)obj["id"] ?? String.Empty, new AppModel(obj));
                 }
             }
         }
 
-        private async Task updateDependencies() {
+        private async Task UpdateDependencies() {
             this.Dependencies.Clear();
 
-            for (Int32 n = 0; n < this.Repositories.Count; n++) {
-                var repo = this.Repositories[n];
-
+            foreach (RepositoryModel repo in this.Repositories) {
                 var client = new HttpClient();
-                HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.URL, "dependencies.json")));
+                HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.Url, "dependencies.json")));
                 var dependencies = JArray.Parse(await response.Content.ReadAsStringAsync());
-
-                for (Int32 i = 0; i < dependencies.Count; i++) {
-                    // TODO: do this properly
-                    var obj = JObject.Parse(dependencies[i].ToString());
-                    this.Dependencies.Add((String)obj["id"], obj.ToObject<AppDependency>());
+                foreach (JObject obj in dependencies.Select(dependency => JObject.Parse(dependency.ToString()))) {
+                    // TODO: validate ID, can't be null
+                    this.Dependencies.Add((String)obj["id"] ?? String.Empty, obj.ToObject<AppDependency>());
                 }
             }
         }
@@ -58,10 +47,10 @@ namespace Store.Controllers
             this.Repositories = this.Settings.Config.Repositories;
 
             // Fetch packages.
-            await this.updatePackages();
+            await this.UpdatePackages();
 
             // TODO: Fetch dependencies.
-            await this.updateDependencies();
+            await this.UpdateDependencies();
 
             // Sort packages based on title.
             // TODO: do this properly.
