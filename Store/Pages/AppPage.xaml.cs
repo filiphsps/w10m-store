@@ -32,6 +32,8 @@ namespace Store.Pages
         public AppPage()
         {
             this.InitializeComponent();
+
+            // TODO: show error view if package is invalid
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -55,16 +57,17 @@ namespace Store.Pages
             this.AppVersionStr.Text = this.app.Version.ToString();
             this.AppDescStr.Text = this.app.Description;
             this.AppImg.Source = new BitmapImage(new Uri(this.app.LogoUrl));
-
-            if (this.app.Timestamp != null)
-                this.AppTimestampStr.Text = this.app.Timestamp?.ToLocalTime().ToString("dd MMMM yyyy");
-            else
-                this.AppTimestamp.Visibility = Visibility.Collapsed;
-
+            this.AppTimestampStr.Text = this.app.Timestamp?.ToLocalTime().ToString("dd MMMM yyyy");
             this.AppSizeStr.Text = this.app.Size.ToString();
-
-            this.DependencyList.ItemsSource = this.app.Dependencies;
             this.ContributorsList.ItemsSource = this.app.Contributors;
+            this.DependencyList.ItemsSource = this.app.Dependencies;
+
+            if (this.app.Timestamp == null)
+                this.AppTimestamp.Visibility = Visibility.Collapsed;
+            if (this.app.Contributors.Count <= 0)
+                this.ContributorsList.Visibility = Visibility.Collapsed;
+            if (this.app.Dependencies.Count <= 0)
+                this.DependencyList.Visibility = Visibility.Collapsed;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
