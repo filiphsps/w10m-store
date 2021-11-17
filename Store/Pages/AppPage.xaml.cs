@@ -18,12 +18,10 @@ using Windows.UI.Xaml.Media.Animation;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Store.Pages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The App/Package view
     /// </summary>
     public sealed partial class AppPage : Page
     {
@@ -57,7 +55,8 @@ namespace Store.Pages
             this.AppVersionStr.Text = this.app.Version.ToString();
             this.AppDescStr.Text = this.app.Description;
             this.AppImg.Source = new BitmapImage(new Uri(this.app.LogoUrl));
-            this.AppTimestampStr.Text = this.app.Timestamp?.ToLocalTime().ToString("dd MMMM yyyy");
+            if (this.app.Timestamp != null)
+                this.AppTimestampStr.Text = this.app.Timestamp?.ToLocalTime().ToString("dd MMMM yyyy");
             this.AppSizeStr.Text = this.app.Size.ToString();
             this.ContributorsList.ItemsSource = this.app.Contributors;
             this.DependencyList.ItemsSource = this.app.Dependencies;
@@ -78,7 +77,7 @@ namespace Store.Pages
 
         private void InstallBtn_Click(object sender, RoutedEventArgs e)
         {
-            // TODO
+            this.Frame.Navigate(typeof(Pages.InstallerPage), this.app);
         }
 
         private void AppAuthorStr_Tapped(object sender, TappedRoutedEventArgs e)

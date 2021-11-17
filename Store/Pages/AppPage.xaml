@@ -32,8 +32,7 @@
                         <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Stretch">
                             <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">Name</TextBlock>
                             <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}" Tapped="AppAuthorStr_Tapped">Author</TextBlock>
-                            <Button x:Name="InstallBtn" HorizontalAlignment="Stretch" Margin="0,15,0,-4" Click="InstallBtn_Click">Install</Button>
-                            <ProgressBar x:Name="Progress" Value="0" Background="Transparent" />
+                            <Button x:Name="InstallBtn" HorizontalAlignment="Stretch" Margin="0,15,0,0" Click="InstallBtn_Click">Install</Button>
                         </StackPanel>
                     </Grid>
                     <TextBlock x:Name="AppDescStr" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}">AppDescription</TextBlock>

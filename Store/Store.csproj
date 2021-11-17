@@ -131,6 +131,9 @@
     <Compile Include="Pages\AppPage.xaml.cs">
       <DependentUpon>AppPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\InstallerPage.xaml.cs">
+      <DependentUpon>InstallerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PackagesPage.xaml.cs">
       <DependentUpon>PackagesPage.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\AppPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InstallerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
