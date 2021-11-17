@@ -15,10 +15,10 @@ namespace Store.Pages {
             PackageVersion version = Package.Current.Id.Version;
             this.AppVersionStr.Text = String.Format($"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}");
 
-            this.AppPkgsStr.Text = App.Repository.Packages.Count.ToString();
-            this.AppDepsStr.Text = "0"; // App.Repository.Packages.Count.ToString();
-            this.AppResCntStr.Text = App.Repository.Repositories.Count.ToString();
-            this.ReposList.ItemsSource = App.Repository.Repositories;
+            this.AppPkgsStr.Text = App.StoreManager.Packages.Count.ToString();
+            this.AppDepsStr.Text = App.StoreManager.Dependencies.Count.ToString();
+            this.AppResCntStr.Text = App.StoreManager.Repositories.Count.ToString();
+            this.ReposList.ItemsSource = App.StoreManager.Repositories;
         }
     }
 }

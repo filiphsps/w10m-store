@@ -15,7 +15,7 @@ namespace Store.Pages {
 
         public PackagesPage() {
             this.InitializeComponent();
-            this.AllPkgsList.ItemsSource = App.Repository.Packages.Values;
+            this.AllPkgsList.ItemsSource = App.StoreManager.Packages.Values;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {

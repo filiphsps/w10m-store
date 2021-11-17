@@ -13,17 +13,17 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Store.Models;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Store.Pages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The "Install App" view
     /// </summary>
     public sealed partial class InstallerPage : Page
     {
-        private AppModel app;
+        private AppModel _app;
 
         public InstallerPage()
         {
@@ -34,12 +34,34 @@ namespace Store.Pages
         {
             base.OnNavigatedTo(e);
 
-            this.app = (AppModel)e.Parameter;
+            this._app = (AppModel)e.Parameter;
+
+            this.AppNameStr.Text = this._app.Title;
+            this.AppAuthorStr.Text = this._app.Author;
+            this.AppImg.Source = new BitmapImage(new Uri(this._app.LogoUrl));
+            this.ProgressStr.Text = "";
         }
 
-        private void ActionBtn_Click(Object sender, RoutedEventArgs e)
+        private async void ActionBtn_Click(Object sender, RoutedEventArgs e)
         {
+            this.CancelBtn.Visibility = Visibility.Collapsed;
+            this.ActionBtn.Visibility = Visibility.Collapsed;
 
+            // TODO: Utility function?
+            this.ProgressStr.Text += "Installing \"" + this._app.Title + "\"\n";
+
+            // TODO: subscribe to progress updates
+            this.ProgressStr.Text += "Staring download...\n";
+            await App.StoreManager.Downloader.Download(this._app);
+            this.ProgressStr.Text += "Download completed!\n";
+
+            // TODO: subscribe to progress updates
+            this.ProgressStr.Text += "Starting installation...\n";
+            await App.StoreManager.Installer.Install(this._app);
+            this.ProgressStr.Text += "Installation completed!\n";
+
+            this.CancelBtn.Content = "Done";
+            this.CancelBtn.Visibility = Visibility.Visible;
         }
 
         private void CancelBtn_Click(Object sender, RoutedEventArgs e)

@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\DownloadController.cs" />
+    <Compile Include="Controllers\InstallController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -190,7 +191,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Images\PlaceholderAppIcon.png" />
+    <Content Include="Assets\PlaceholderAppIcon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

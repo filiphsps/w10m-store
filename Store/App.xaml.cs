@@ -13,7 +13,7 @@ namespace Store {
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App {
-        internal static StoreController Repository { get; set; } = new StoreController();
+        internal static StoreController StoreManager { get; set; } = new StoreController();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

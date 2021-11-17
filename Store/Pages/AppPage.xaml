@@ -30,8 +30,8 @@
                             <Image x:Name="AppImg" Stretch="Uniform" Height="130" Width="130" />
                         </Border>
                         <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Stretch">
-                            <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">Name</TextBlock>
-                            <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}" Tapped="AppAuthorStr_Tapped">Author</TextBlock>
+                            <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">AppName</TextBlock>
+                            <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}" Tapped="AppAuthorStr_Tapped">AppAuthor</TextBlock>
                             <Button x:Name="InstallBtn" HorizontalAlignment="Stretch" Margin="0,15,0,0" Click="InstallBtn_Click">Install</Button>
                         </StackPanel>
                     </Grid>

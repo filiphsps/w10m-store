@@ -13,8 +13,8 @@
         <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="0,0,0,10" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="Padding" Value="0" />
         </Style>
     </Page.Resources>
 
@@ -23,7 +23,12 @@
             <ScrollViewer>
                 <StackPanel>
                     <AutoSuggestBox PlaceholderText="Search" QueryIcon="Find" IsEnabled="False" Margin="0,0,0,20" />
-                    <ListView x:Name="AllPkgsList" ItemClick="AllPkgsList_ItemClick" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsItemClickEnabled="True">
+                    <ListView
+                        x:Name="AllPkgsList"
+                        ItemClick="AllPkgsList_ItemClick"
+                        ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                        ScrollViewer.VerticalScrollMode="Disabled"
+                        IsItemClickEnabled="True">
                         <ListView.ItemContainerTransitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition IsStaggeringEnabled="True" />
@@ -33,7 +38,7 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.25*"/>
+                                        <ColumnDefinition Width="0.25*" MaxWidth="85"/>
                                         <ColumnDefinition Width="0.75*"/>
                                     </Grid.ColumnDefinitions>
 

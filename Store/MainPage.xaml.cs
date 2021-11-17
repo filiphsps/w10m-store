@@ -31,9 +31,9 @@ namespace Store
         private async void Page_Loaded(Object sender, RoutedEventArgs e)
         {
             try {
-                await App.Repository.Initialize();
+                await App.StoreManager.Initialize();
 
-                try { await App.Repository.Settings.Save(); } catch { }
+                try { await App.StoreManager.Settings.Save(); } catch { }
 
                 // TODO: use the json data
                 this.Frame.Navigate(typeof(Pages.PackagesPage), null, new DrillInNavigationTransitionInfo());

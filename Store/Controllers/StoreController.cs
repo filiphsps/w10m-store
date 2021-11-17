@@ -10,7 +10,8 @@ namespace Store.Controllers {
     internal sealed class StoreController {
         public StoreController() {
             this.Settings = new SettingsController();
-            this.Downloads = new DownloadController();
+            this.Downloader = new DownloadController();
+            this.Installer = new InstallController();
         }
 
         private async Task UpdatePackages() {
@@ -43,6 +44,8 @@ namespace Store.Controllers {
 
         public async Task Initialize() {
             await this.Settings.Initialize();
+            await this.Downloader.Initialize();
+            await this.Installer.Initialize();
 
             this.Repositories = this.Settings.Config.Repositories;
 
@@ -53,12 +56,13 @@ namespace Store.Controllers {
             await this.UpdateDependencies();
 
             // Sort packages based on title.
-            // TODO: do this properly.
+            // TODO: do this properly. Perhaps even in the view(s)?
             this.Packages = this.Packages.OrderBy(i => i.Value.Title).ToDictionary(x => x.Key, x => x.Value);
         }
 
         public SettingsController Settings { get; }
-        public DownloadController Downloads { get; }
+        public DownloadController Downloader { get; }
+        public InstallController Installer { get; }
         public List<RepositoryModel> Repositories { get; set; } // TODO: this should only be get.
         public Dictionary<String, AppModel> Packages { get; set; } = new Dictionary<String, AppModel>();
         public Dictionary<String, AppDependency> Dependencies { get; set; } = new Dictionary<String, AppDependency>();
