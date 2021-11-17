@@ -37,10 +37,13 @@ namespace Store.Models
         public AppModel(JObject data) {
             this.Namespace = (String)data["namespace"];
             this.Version = new Version((String)data["version"]);
-            try {
-                // TODO: enforce this on the repo-side
-                this.Timestamp = DateTime.Parse((String)data["date"]);
-            } catch { }
+
+            if (data.ContainsKey("date")) {
+                try {
+                    this.Timestamp = DateTime.Parse((String)data["date"]);
+                } catch { }
+            }
+
             this.Title = (String)data["title"];
             this.Author = (String)data["author"];
             this.Description = (String)data["description"];
@@ -52,7 +55,7 @@ namespace Store.Models
 
         public String Namespace { get; }
         public Version Version { get; }
-        public DateTime Timestamp { get; }
+        public DateTime? Timestamp { get; } = null;
         public String Title { get; }
         public String Author { get; }
         public List<AppAuthor> Contributors { get; }

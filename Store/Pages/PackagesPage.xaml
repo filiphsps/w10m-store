@@ -13,42 +13,58 @@
         <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Margin" Value="0,0,0,5" />
-            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0,0,0,10" />
         </Style>
     </Page.Resources>
 
     <Pivot Title="Store">
         <PivotItem Header="All packages">
             <ScrollViewer>
-                <ListView x:Name="AllPkgsList" ItemClick="AllPkgsList_ItemClick" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsItemClickEnabled="True">
-                    <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition IsStaggeringEnabled="True" />
-                        </TransitionCollection>
-                    </ListView.ItemContainerTransitions>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.25*"/>
-                                    <ColumnDefinition Width="0.75*"/>
-                                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <AutoSuggestBox PlaceholderText="Search" QueryIcon="Find" IsEnabled="False" Margin="0,0,0,20" />
+                    <ListView x:Name="AllPkgsList" ItemClick="AllPkgsList_ItemClick" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsItemClickEnabled="True">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.25*"/>
+                                        <ColumnDefinition Width="0.75*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Border x:Name="LogoImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Margin="0,0,10,0">
-                                    <Image x:Name="LogoImg" Source="{Binding LogoUrl}" Stretch="Uniform" />
-                                </Border>
-                                <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
-                                    <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"/>
-                                    <TextBlock Text="{Binding Author}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                    <Border x:Name="LogoImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                                        <Image x:Name="LogoImg" Source="{Binding LogoUrl}" Stretch="Uniform" />
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,-5,0,0">
+                                        <TextBlock Text="{Binding Title}" FontSize="20" LineHeight="20"/>
+                                        <TextBlock Text="{Binding Author}" FontSize="14" LineHeight="14"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </ScrollViewer>
         </PivotItem>
-        <PivotItem Header="Installed"></PivotItem>
+        <PivotItem Header="Installed">
+            <ScrollViewer>
+                <StackPanel>
+                    <AutoSuggestBox PlaceholderText="Search" QueryIcon="Find" IsEnabled="False" Margin="0,0,0,20" />
+                    <ListView ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsItemClickEnabled="True">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
+        </PivotItem>
     </Pivot>
 
     <Page.BottomAppBar>

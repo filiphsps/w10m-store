@@ -44,9 +44,9 @@
             <ScrollViewer ScrollViewer.VerticalScrollMode="Enabled">
                 <StackPanel>
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Information</TextBlock>
-                    <TextBlock>Version: <Run x:Name="AppVersionStr" />.</TextBlock>
+                    <TextBlock x:Name="AppVersion">Version: <Run x:Name="AppVersionStr" />.</TextBlock>
                     <TextBlock>Namespace: <Run x:Name="AppNsStr" />.</TextBlock>
-                    <TextBlock>Last updated: <Run x:Name="AppTimestampStr" />.</TextBlock>
+                    <TextBlock x:Name="AppTimestamp">Last updated: <Run x:Name="AppTimestampStr" />.</TextBlock>
                     <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB.</TextBlock>
 
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Contributors</TextBlock>

@@ -57,7 +57,9 @@ namespace Store.Pages
             this.AppImg.Source = new BitmapImage(new Uri(this.app.LogoUrl));
 
             if (this.app.Timestamp != null)
-                this.AppTimestampStr.Text = this.app.Timestamp.ToLocalTime().ToString("dd MMMM yyyy");
+                this.AppTimestampStr.Text = this.app.Timestamp?.ToLocalTime().ToString("dd MMMM yyyy");
+            else
+                this.AppTimestamp.Visibility = Visibility.Collapsed;
 
             this.AppSizeStr.Text = this.app.Size.ToString();
 
