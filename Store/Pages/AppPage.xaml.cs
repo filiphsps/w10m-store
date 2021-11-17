@@ -63,10 +63,14 @@ namespace Store.Pages
 
             if (this.app.Timestamp == null)
                 this.AppTimestamp.Visibility = Visibility.Collapsed;
-            if (this.app.Contributors.Count <= 0)
+            if (this.app.Contributors.Count <= 0) {
                 this.ContributorsList.Visibility = Visibility.Collapsed;
-            if (this.app.Dependencies.Count <= 0)
+                this.ContributorsListTitle.Visibility = Visibility.Collapsed;
+            }
+            if (this.app.Dependencies.Count <= 0) {
                 this.DependencyList.Visibility = Visibility.Collapsed;
+                this.DependencyListTitle.Visibility = Visibility.Collapsed;
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

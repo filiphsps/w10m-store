@@ -48,7 +48,7 @@
                     <TextBlock x:Name="AppTimestamp">Last updated: <Run x:Name="AppTimestampStr" />.</TextBlock>
                     <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB.</TextBlock>
 
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Contributors</TextBlock>
+                    <TextBlock x:Name="ContributorsListTitle" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Contributors</TextBlock>
                     <ListView x:Name="ContributorsList" SelectionMode="None" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -60,7 +60,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Dependencies</TextBlock>
+                    <TextBlock x:Name="DependencyListTitle" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15,0,0">Dependencies</TextBlock>
                     <ListView x:Name="DependencyList" SelectionMode="None" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled">
                         <ListView.ItemTemplate>
                             <DataTemplate>
