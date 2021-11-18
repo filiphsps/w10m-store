@@ -22,8 +22,15 @@ namespace Store.Controllers {
                 HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.Url, "packages.json")));
                 var packages = JArray.Parse(await response.Content.ReadAsStringAsync());
                 foreach (JObject obj in packages.Select(package => JObject.Parse(package.ToString()))) {
-                    // TODO: validate ID, can't be null
-                    this.Packages.Add((String)obj["id"] ?? String.Empty, new AppModel(obj));
+                    if (!obj.ContainsKey("id"))
+                        continue; // TODO: log the error somewhere
+
+                    String id = (String)obj["id"] ?? String.Empty;
+
+                    if (!this.Packages.ContainsKey(id))
+                        this.Packages.Add(id, new AppModel(obj));
+                    else
+                        this.Packages[id] = new AppModel(obj);
                 }
             }
         }
@@ -36,8 +43,15 @@ namespace Store.Controllers {
                 HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.Url, "dependencies.json")));
                 var dependencies = JArray.Parse(await response.Content.ReadAsStringAsync());
                 foreach (JObject obj in dependencies.Select(dependency => JObject.Parse(dependency.ToString()))) {
-                    // TODO: validate ID, can't be null
-                    this.Dependencies.Add((String)obj["id"] ?? String.Empty, obj.ToObject<AppDependency>());
+                    if (!obj.ContainsKey("id"))
+                        continue; // TODO: log the error somewhere
+
+                    String id = (String)obj["id"] ?? String.Empty;
+
+                    if (!this.Dependencies.ContainsKey(id))
+                        this.Dependencies.Add(id, obj.ToObject<AppDependency>());
+                    else
+                        this.Dependencies[id] = obj.ToObject<AppDependency>();
                 }
             }
         }
@@ -48,6 +62,9 @@ namespace Store.Controllers {
             await this.Installer.Initialize();
 
             this.Repositories = this.Settings.Config.Repositories;
+            foreach (RepositoryModel repo in this.Repositories) {
+                await repo.Initialize();
+            }
 
             // Fetch packages.
             await this.UpdatePackages();

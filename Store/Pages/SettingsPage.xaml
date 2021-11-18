@@ -37,12 +37,21 @@
                     <TextBlock TextWrapping="Wrap">Across <Run x:Name="AppResCntStr" /> Repository/Repositories.</TextBlock>
 
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,5,0,0">Sources</TextBlock>
-                    <ListView x:Name="ReposList" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsMultiSelectCheckBoxEnabled="True">
+                    <ListView
+                        x:Name="ReposList"
+                        ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                        ScrollViewer.VerticalScrollMode="Disabled"
+                        SelectionMode="Multiple"
+                        IsItemClickEnabled="True"
+                        IsMultiSelectCheckBoxEnabled="True"
+                        SelectionChanged="ReposList_OnSelectionChanged"
+                        >
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Title}" />
-                                    <TextBlock Text="{Binding URL}" Style="{ThemeResource CaptionTextBlockStyle}" />
+                                <StackPanel Padding="10,0,0,0">
+                                    <!-- TODO: Popup -->
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Description}" Style="{ThemeResource CaptionTextBlockStyle}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -66,8 +75,9 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RemoveRepoBtn" Icon="Remove" Label="Remove Selected" IsEnabled="False" />
+                <AppBarButton x:Name="RemoveRepoBtn" Icon="Remove" Label="Remove Selected" IsEnabled="False" Click="RemoveRepoBtn_OnClick" />
                 <AppBarButton x:Name="AddRepoBtn" Icon="Add" Label="Add Repository" IsEnabled="False" />
+                <AppBarButton x:Name="EditRepoBtn" Icon="Edit" Label="Edit" IsEnabled="False" Visibility="Collapsed" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

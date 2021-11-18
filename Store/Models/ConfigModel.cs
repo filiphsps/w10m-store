@@ -3,7 +3,7 @@
 namespace Store.Models {
     internal sealed class ConfigModel {
         internal readonly List<RepositoryModel> Repositories = new List<RepositoryModel>() {
-            new RepositoryModel("w10m-research", "https://raw.githubusercontent.com/w10m-research/StoreRepository/master/")
+            new RepositoryModel("https://w10m-research.github.io/StoreRepository")
         };
     }
 }

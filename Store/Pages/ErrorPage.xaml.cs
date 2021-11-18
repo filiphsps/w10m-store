@@ -31,6 +31,11 @@ namespace Store.Pages {
             var ex = (Exception)e.Parameter;
 
             this.ErrorMsgStr.Text = ex.Message;
+            this.ErrorStackStr.Text = ex.StackTrace;
+
+#if DEBUG
+            this.ErrorStackStr.Visibility = Visibility.Visible;
+#endif
         }
 
         private void RetryBtn_OnClick(Object sender, RoutedEventArgs e) {

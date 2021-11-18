@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Store.Controllers;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -14,6 +15,7 @@ namespace Store {
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App {
+        private Frame _rootFrame;
         internal static StoreController StoreManager { get; set; } = new StoreController();
 
         /// <summary>
@@ -23,6 +25,14 @@ namespace Store {
         internal App() {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+            this.UnhandledException += (sender, ex) => {
+                ex.Handled = true;
+                this._rootFrame.Navigate(typeof(Pages.ErrorPage), ex.Exception, new DrillInNavigationTransitionInfo());
+            };
+            TaskScheduler.UnobservedTaskException += (sender, ex) => {
+                ex.SetObserved();
+                this._rootFrame.Navigate(typeof(Pages.ErrorPage), ex.Exception, new DrillInNavigationTransitionInfo());
+            };
         }
 
         /// <summary>
@@ -31,29 +41,29 @@ namespace Store {
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e) {
-            var rootFrame = (Frame)Window.Current.Content;
+            this._rootFrame = (Frame)Window.Current.Content;
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null) {
+            if (this._rootFrame == null) {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+                this._rootFrame = new Frame();
 
-                rootFrame.NavigationFailed += this.OnNavigationFailed;
+                this._rootFrame.NavigationFailed += this.OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated) {
                     //TODO: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
+                Window.Current.Content = this._rootFrame;
             }
 
             if (e.PrelaunchActivated) return;
-            if (rootFrame.Content == null) {
+            if (this._rootFrame.Content == null) {
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                this._rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
 
             SystemNavigationManager.GetForCurrentView().BackRequested += this.OnBackRequested;
