@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Store.Controllers;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
@@ -100,6 +101,25 @@ namespace Store {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        protected override async void OnActivated(IActivatedEventArgs args) {
+            this._rootFrame = (Frame)Window.Current.Content;
+            if (this._rootFrame == null) {
+                this._rootFrame = new Frame();
+                Window.Current.Content = this._rootFrame;
+            }
+
+            if (args.Kind == ActivationKind.Protocol) {
+                var eventArgs = args as ProtocolActivatedEventArgs;
+                // TODO: error if app doesnt exist
+                // TODO: somehow handle outside repo
+                await App.StoreManager.Initialize();
+                this._rootFrame.Navigate(typeof(Pages.AppPage), App.StoreManager.Packages[eventArgs.Uri.Host]);
+            }
+
+            SystemNavigationManager.GetForCurrentView().BackRequested += this.OnBackRequested;
+            Window.Current.Activate();
         }
 
         private void OnBackRequested(Object sender, BackRequestedEventArgs e) {

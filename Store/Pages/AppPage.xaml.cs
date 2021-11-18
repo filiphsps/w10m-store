@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
 using Store.Models;
 using System.Globalization;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace Store.Pages {
@@ -77,7 +78,13 @@ namespace Store.Pages {
         }
 
         private void ShareBtn_OnClick(Object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
+            DataTransferManager.GetForCurrentView().DataRequested += (DataTransferManager s, DataRequestedEventArgs args) => {
+                args.Request.Data.SetWebLink(new Uri($"store://{this._app.Id}"));
+                args.Request.Data.Properties.Title = $"Share {this._app.Title}";
+                //args.Request.Data.Properties.Description = "description";
+            };
+
+            DataTransferManager.ShowShareUI();
         }
     }
 }
