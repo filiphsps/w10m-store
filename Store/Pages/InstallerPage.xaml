@@ -8,6 +8,25 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.TopAppBar>
+        <CommandBar
+            HorizontalContentAlignment="Stretch"
+            IsDynamicOverflowEnabled="False"
+            OverflowButtonVisibility="Collapsed">
+            <CommandBar.Content>
+                <Grid>
+                    <ContentControl
+                        Style="{ThemeResource PivotTitleContentControlStyle}"
+                        VerticalAlignment="Center">
+                        <TextBlock x:Name="PageTitleStr">
+                            INSTALLER
+                        </TextBlock>
+                    </ContentControl>
+                </Grid>
+            </CommandBar.Content>
+        </CommandBar>
+    </Page.TopAppBar>
+
     <Grid Padding="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -21,7 +40,6 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             
-            <TextBlock Grid.Row="0" Style="{ThemeResource FlyoutPickerTitleTextBlockStyle}">INSTALLER</TextBlock>
             <Grid Grid.Row="1" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>

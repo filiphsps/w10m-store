@@ -16,84 +16,112 @@
         </Style>
     </Page.Resources>
 
-    <Pivot x:Name="PrimaryPivot" Title="AppName">
-        <PivotItem Header="Overview">
-            <ScrollViewer ScrollViewer.VerticalScrollMode="Enabled">
-                <StackPanel>
-                    <Grid x:Name="DetailsWrapper" Margin="0,10,0,20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="125"/>
-                            <ColumnDefinition Width="1*" MaxWidth="215" />
-                        </Grid.ColumnDefinitions>
+    <Page.TopAppBar>
+        <CommandBar
+            HorizontalContentAlignment="Stretch"
+            IsDynamicOverflowEnabled="False"
+            OverflowButtonVisibility="Collapsed">
+            <CommandBar.Content>
+                <Grid>
+                    <ContentControl
+                        Style="{ThemeResource PivotTitleContentControlStyle}"
+                        VerticalAlignment="Center">
+                        <TextBlock x:Name="PageTitleStr">
+                            AppName
+                        </TextBlock>
+                    </ContentControl>
+                </Grid>
+            </CommandBar.Content>
+        </CommandBar>
+    </Page.TopAppBar>
 
-                        <Border x:Name="AppImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-                            <Image x:Name="AppImg" Stretch="Uniform" Height="125" Width="125" />
-                        </Border>
-                        <StackPanel
-                            Grid.Column="1"
-                            Margin="15,0,0,0"
-                            VerticalAlignment="Stretch"
-                            HorizontalAlignment="Stretch">
-                            <TextBlock x:Name="AppNameStr" FontSize="20" LineHeight="20" TextWrapping="Wrap">AppName</TextBlock>
-                            <TextBlock x:Name="AppAuthorStr" FontSize="14" LineHeight="14" TextWrapping="Wrap" Tapped="AppAuthorStr_Tapped">AppAuthor</TextBlock>
-                        </StackPanel>
-                    </Grid>
-                    <TextBlock
-                        x:Name="AppDescStr"
-                        TextWrapping="Wrap"
-                        Style="{ThemeResource BodyTextBlockStyle}">
-                        AppDescription
-                    </TextBlock>
-                </StackPanel>
-            </ScrollViewer>
-        </PivotItem>
-        <PivotItem Header="Details">
-            <ScrollViewer ScrollViewer.VerticalScrollMode="Enabled">
-                <StackPanel>
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Information</TextBlock>
-                    <TextBlock x:Name="AppVersion">Version: <Run x:Name="AppVersionStr" />.</TextBlock>
-                    <TextBlock>Namespace: <Run x:Name="AppNsStr" />.</TextBlock>
-                    <TextBlock x:Name="AppTimestamp">Last updated: <Run x:Name="AppTimestampStr" />.</TextBlock>
-                    <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB.</TextBlock>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
-                    <TextBlock
-                        x:Name="ContributorsListTitle"
-                        Style="{ThemeResource SubtitleTextBlockStyle}"
-                        Margin="0,15,0,0">
-                        Contributors
-                    </TextBlock>
-                    <ListView
-                        x:Name="ContributorsList"
-                        SelectionMode="None"
-                        ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
-                        ScrollViewer.VerticalScrollMode="Disabled">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Name}"/>
-                                    <TextBlock
-                                        Text="{Binding Role}"
-                                        Style="{ThemeResource CaptionTextBlockStyle}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+        <Grid x:Name="DetailsWrapper" Grid.Row="0" Margin="12,10,12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition Width="1*" MaxWidth="215" />
+            </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        x:Name="DependencyListTitle"
-                        Style="{ThemeResource SubtitleTextBlockStyle}"
-                        Margin="0,15,0,0">
-                        Dependencies
-                    </TextBlock>
-                    <ListView
-                        x:Name="DependencyList"
-                        SelectionMode="None"
-                        ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
-                        ScrollViewer.VerticalScrollMode="Disabled" />
-                </StackPanel>
-            </ScrollViewer>
-        </PivotItem>
-    </Pivot>
+            <Border x:Name="AppImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                <Image x:Name="AppImg" Stretch="Uniform" Height="125" Width="125" />
+            </Border>
+            <StackPanel
+                Grid.Column="1"
+                Margin="15,0,0,0"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch">
+                <TextBlock x:Name="AppNameStr" FontSize="20" LineHeight="20" TextWrapping="Wrap">AppName</TextBlock>
+                <TextBlock x:Name="AppAuthorStr" FontSize="14" LineHeight="14" TextWrapping="Wrap" Tapped="AppAuthorStr_Tapped">AppAuthor</TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Pivot x:Name="PrimaryPivot" Grid.Row="1" VerticalAlignment="Stretch">
+            <PivotItem Header="Overview">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock
+                            x:Name="AppDescStr"
+                            TextWrapping="Wrap"
+                            Style="{ThemeResource BodyTextBlockStyle}">
+                            AppDescription
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="Details">
+                <ScrollViewer ScrollViewer.VerticalScrollMode="Enabled">
+                    <StackPanel>
+                        <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Information</TextBlock>
+                        <TextBlock x:Name="AppVersion">Version: <Run x:Name="AppVersionStr" />.</TextBlock>
+                        <TextBlock>Namespace: <Run x:Name="AppNsStr" />.</TextBlock>
+                        <TextBlock x:Name="AppTimestamp">Last updated: <Run x:Name="AppTimestampStr" />.</TextBlock>
+                        <TextBlock>Size: <Run x:Name="AppSizeStr" /> MB.</TextBlock>
+
+                        <TextBlock
+                            x:Name="ContributorsListTitle"
+                            Style="{ThemeResource SubtitleTextBlockStyle}"
+                            Margin="0,15,0,0">
+                            Contributors
+                        </TextBlock>
+                        <ListView
+                            x:Name="ContributorsList"
+                            SelectionMode="None"
+                            ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                            ScrollViewer.VerticalScrollMode="Disabled">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock
+                                            Text="{Binding Role}"
+                                            Style="{ThemeResource CaptionTextBlockStyle}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <TextBlock
+                            x:Name="DependencyListTitle"
+                            Style="{ThemeResource SubtitleTextBlockStyle}"
+                            Margin="0,15,0,0">
+                            Dependencies
+                        </TextBlock>
+                        <ListView
+                            x:Name="DependencyList"
+                            SelectionMode="None"
+                            ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                            ScrollViewer.VerticalScrollMode="Disabled" />
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+
     <Page.BottomAppBar>
         <CommandBar
             IsDynamicOverflowEnabled="False"

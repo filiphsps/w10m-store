@@ -31,7 +31,7 @@ namespace Store.Pages {
                 throw new Exception("Invalid Application");
             }
 
-            this.PrimaryPivot.Title = this._app.Title;
+            this.PageTitleStr.Text = this._app.Title;
             this.AppNsStr.Text = this._app.Id;
             this.AppNameStr.Text = this._app.Title;
             this.AppAuthorStr.Text = this._app.Author;

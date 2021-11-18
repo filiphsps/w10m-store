@@ -42,5 +42,9 @@ namespace Store.Pages {
             this.AllPkgsList.PrepareConnectedAnimation("appLogoIn", e.ClickedItem, "AppWrapper");
             this.Frame.Navigate(typeof(AppPage), (Models.AppModel)e.ClickedItem, new SuppressNavigationTransitionInfo());
         }
+
+        private async void DonateBtn_OnClick(Object sender, RoutedEventArgs e) {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/sponsors/filiphsandstrom"));
+        }
     }
 }

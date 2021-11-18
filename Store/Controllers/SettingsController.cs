@@ -1,28 +1,33 @@
-﻿using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Store.Models;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace Store.Controllers {
     internal sealed class SettingsController {
+        // TODO: implementation cache
+
         internal async Task Initialize() {
-            /*
-            TODO: implementation cache loading
-            var appData = Windows.Storage.ApplicationData.Current.LocalFolder;
-            try
-            {
-                var configFile = await appData.GetFileAsync("config.json");
-                this.Config = JsonConvert.DeserializeObject<Models.ConfigModel>(await Windows.Storage.FileIO.ReadTextAsync(configFile));
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+            if (!localSettings.Values.ContainsKey("config")) {
+                this.Config = new Models.ConfigModel {
+                    Repositories = new List<RepositoryModel> {
+                        new RepositoryModel("https://w10m-research.github.io/StoreRepository")
+                    }
+                };
+                return;
             }
-            catch (FileNotFoundException) {
-                var configFile = await appData.CreateFileAsync("config.json"); */
-                this.Config = new Models.ConfigModel();
-                /*await Windows.Storage.FileIO.WriteTextAsync(configFile, JsonConvert.SerializeObject(this.Config));
-            }*/
+
+            this.Config = JsonConvert.DeserializeObject<Models.ConfigModel>((String)localSettings.Values["config"]);
         }
 
         internal async Task Save() {
-            // TODO: implementation cache saving
-            // var appData = Windows.Storage.ApplicationData.Current.LocalFolder;
-            // var configFile = await appData.GetFileAsync("config.json");
-            // await Windows.Storage.FileIO.WriteTextAsync(configFile, JsonConvert.SerializeObject(this.Config));
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["config"] = JsonConvert.SerializeObject(this.Config);
         }
 
         internal Models.ConfigModel Config { get; private set; }

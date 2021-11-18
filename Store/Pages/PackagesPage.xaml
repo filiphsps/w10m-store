@@ -18,7 +18,26 @@
         </Style>
     </Page.Resources>
 
-    <Pivot Title="Store">
+    <Page.TopAppBar>
+        <CommandBar
+            HorizontalContentAlignment="Stretch"
+            IsDynamicOverflowEnabled="False"
+            OverflowButtonVisibility="Collapsed">
+            <CommandBar.Content>
+                <Grid>
+                    <ContentControl
+                        Style="{ThemeResource PivotTitleContentControlStyle}"
+                        VerticalAlignment="Center">
+                        <TextBlock>
+                            Store
+                        </TextBlock>
+                    </ContentControl>
+                </Grid>
+            </CommandBar.Content>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Pivot>
         <PivotItem Header="All packages">
             <ScrollViewer>
                 <StackPanel>
@@ -92,7 +111,7 @@
                 <AppBarButton x:Name="DownloadsBtn" Icon="Download" Label="Downloads" IsEnabled="False"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="DonateBtn" Icon="OutlineStar" Label="Support the developers" IsEnabled="False" />
+                <AppBarButton x:Name="DonateBtn" Icon="OutlineStar" Label="Support the developers" Click="DonateBtn_OnClick" />
                 <AppBarButton x:Name="SettingsBtn" Icon="Setting" Label="Settings" Click="SettingsBtn_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>

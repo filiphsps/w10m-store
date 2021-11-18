@@ -17,8 +17,27 @@
         </Style>
     </Page.Resources>
 
-    <Pivot x:Name="RootPivot" Title="Settings" SelectionChanged="RootPivot_OnSelectionChanged">
-        <PivotItem Header="Settings">
+    <Page.TopAppBar>
+        <CommandBar
+            HorizontalContentAlignment="Stretch"
+            IsDynamicOverflowEnabled="False"
+            OverflowButtonVisibility="Collapsed">
+            <CommandBar.Content>
+                <Grid>
+                    <ContentControl
+                        Style="{ThemeResource PivotTitleContentControlStyle}"
+                        VerticalAlignment="Center">
+                        <TextBlock>
+                            Settings
+                        </TextBlock>
+                    </ContentControl>
+                </Grid>
+            </CommandBar.Content>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Pivot x:Name="RootPivot" SelectionChanged="RootPivot_OnSelectionChanged">
+        <PivotItem Header="General">
             <ScrollViewer>
                 <StackPanel>
                     <Border
@@ -61,12 +80,14 @@
         </PivotItem>
         <PivotItem Header="About">
             <StackPanel>
-                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Details</TextBlock>
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">About this app</TextBlock>
                 <TextBlock TextWrapping="Wrap">Store <Run x:Name="AppVersionStr" />.</TextBlock>
 
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,5,0,0">Credits</TextBlock>
                 <TextBlock TextWrapping="Wrap">Logo by Mada Creative from the Noun Project.</TextBlock>
-                <TextBlock TextWrapping="Wrap" FontFamily="Segoe MDL2 Assets">Developed with <Run Text="&#xEB52;" Foreground="#FFD61C1C" FontSize="10" /> by Filiph Sandström.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontFamily="Segoe MDL2 Assets">
+                    Developed with <Run Text="&#xEB52;" Foreground="#FFD61C1C" FontSize="10" /> by Filiph Sandström (@filiphsandstrom) and Enrico Angelon (@HerryYT).
+                </TextBlock>
             </StackPanel>
         </PivotItem>
     </Pivot>
@@ -74,8 +95,8 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="AppBar">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RemoveRepoBtn" Icon="Remove" Label="Remove Selected" IsEnabled="False" Click="RemoveRepoBtn_OnClick" />
-                <AppBarButton x:Name="AddRepoBtn" Icon="Add" Label="Add Repository" IsEnabled="False" Click="AddRepoBtn_OnClick" />
+                <AppBarButton x:Name="RemoveRepoBtn" Icon="Remove" Label="Remove Selected" IsEnabled="False" Visibility="Collapsed" Click="RemoveRepoBtn_OnClick" />
+                <AppBarButton x:Name="AddRepoBtn" Icon="Add" Label="Add Repository" Click="AddRepoBtn_OnClick" />
                 <AppBarButton x:Name="EditRepoBtn" Icon="Edit" Label="Edit" IsEnabled="False" Visibility="Collapsed" Click="EditRepoBtn_OnClick" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
