@@ -41,7 +41,11 @@
         <PivotItem Header="All packages">
             <ScrollViewer>
                 <StackPanel>
-                    <AutoSuggestBox PlaceholderText="Search" QueryIcon="Find" IsEnabled="False" Margin="0,0,0,20" />
+                    <AutoSuggestBox
+                        PlaceholderText="Search"
+                        QueryIcon="Find"
+                        IsEnabled="False"
+                        Margin="0,0,0,20" />
                     <ListView
                         x:Name="AllPkgsList"
                         ItemClick="AllPkgsList_ItemClick"
@@ -92,7 +96,11 @@
         <PivotItem Header="Installed">
             <ScrollViewer>
                 <StackPanel>
-                    <AutoSuggestBox PlaceholderText="Search" QueryIcon="Find" IsEnabled="False" Margin="0,0,0,20" />
+                    <AutoSuggestBox
+                        PlaceholderText="Search"
+                        QueryIcon="Find"
+                        IsEnabled="False"
+                        Margin="0,0,0,20" />
                     <ListView ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" ScrollViewer.VerticalScrollMode="Disabled" IsItemClickEnabled="True">
                         <ListView.ItemContainerTransitions>
                             <TransitionCollection>
@@ -108,7 +116,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="DownloadsBtn" Icon="Download" Label="Downloads" IsEnabled="False"/>
+                <AppBarButton x:Name="ReloadBtn" Icon="Refresh" Label="Reload"  Click="ReloadBtn_OnClick" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="DonateBtn" Icon="OutlineStar" Label="Support the developers" Click="DonateBtn_OnClick" />

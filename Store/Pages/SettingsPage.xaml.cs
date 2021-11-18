@@ -90,6 +90,7 @@ namespace Store.Pages {
             if (result != ContentDialogResult.Primary)
                 return;
 
+            // FIXME: validate input.
             App.StoreManager.Settings.Config.Repositories.Add(new RepositoryModel(((TextBox)dialog.Content).Text));
             await this.reload();
         }

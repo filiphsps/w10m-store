@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -15,6 +16,11 @@ namespace Store.Pages {
 
         public PackagesPage() {
             this.InitializeComponent();
+            this.AllPkgsList.ItemsSource = App.StoreManager.Packages.Values;
+        }
+
+        private async Task Reload() {
+            await App.StoreManager.Initialize();
             this.AllPkgsList.ItemsSource = App.StoreManager.Packages.Values;
         }
 
@@ -45,6 +51,10 @@ namespace Store.Pages {
 
         private async void DonateBtn_OnClick(Object sender, RoutedEventArgs e) {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/sponsors/filiphsandstrom"));
+        }
+
+        private async void ReloadBtn_OnClick(Object sender, RoutedEventArgs e) {
+            await this.Reload();
         }
     }
 }

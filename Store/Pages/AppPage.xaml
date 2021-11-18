@@ -60,7 +60,11 @@
             </StackPanel>
         </Grid>
 
-        <Pivot x:Name="PrimaryPivot" Grid.Row="1" VerticalAlignment="Stretch">
+        <Pivot
+            x:Name="PrimaryPivot"
+            Grid.Row="1"
+            VerticalAlignment="Stretch"
+            Margin="0,0,0,10">
             <PivotItem Header="Overview">
                 <ScrollViewer>
                     <StackPanel>

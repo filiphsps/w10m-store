@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using Store.Controllers;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace Store {
@@ -24,6 +25,7 @@ namespace Store {
         /// </summary>
         internal App() {
             this.InitializeComponent();
+
             this.Suspending += this.OnSuspending;
             this.UnhandledException += (sender, ex) => {
                 ex.Handled = true;
@@ -41,6 +43,10 @@ namespace Store {
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e) {
+            // TODO: Handle titlebar.
+            //CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            //coreTitleBar.ExtendViewIntoTitleBar = true;
+
             this._rootFrame = (Frame)Window.Current.Content;
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
