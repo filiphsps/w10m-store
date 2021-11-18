@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="Store.Pages.ErrorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Store.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Padding="12">
+        <TextBlock Style="{ThemeResource HeaderTextBlockStyle}">:-(</TextBlock>
+        <TextBlock x:Name="ErrorTitleMsg" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,5,0,0">It looks like something went wrong.</TextBlock>
+        <TextBlock x:Name="ErrorMsgStr" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,5,0,0">ErrorMessage</TextBlock>
+
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <Button
+                x:Name="RetryBtn"
+                Click="RetryBtn_OnClick"
+                Style="{ThemeResource AccentButtonStyle}"
+                Margin="0,0,10,0">
+                Retry
+            </Button>
+            <Button x:Name="CloseBtn" Click="CloseBtn_OnClick">Close App</Button>
+        </StackPanel>
+    </StackPanel>
+</Page>

@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Store.Controllers;
+using Windows.ApplicationModel.Background;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace Store {
@@ -56,7 +57,8 @@ namespace Store {
             }
 
             SystemNavigationManager.GetForCurrentView().BackRequested += this.OnBackRequested;
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                AppViewBackButtonVisibility.Visible;
 
             // Ensure the current window is active
             Window.Current.Activate();
@@ -92,6 +94,15 @@ namespace Store {
 
             rootFrame.GoBack(new EntranceNavigationTransitionInfo());
             e.Handled = true;
+        }
+
+        public static BackgroundTaskRegistration RegisterBackgroundTask(
+            String taskEntryPoint,
+            String name,
+            IBackgroundTrigger trigger,
+            IBackgroundCondition condition) {
+
+            return null;
         }
     }
 }

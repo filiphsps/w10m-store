@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Store.Models;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Store.Pages
@@ -53,12 +42,10 @@ namespace Store.Pages
             // TODO: subscribe to progress updates
             this.ProgressStr.Text += "Staring download...\n";
             await App.StoreManager.Downloader.Download(this._app);
-            this.ProgressStr.Text += "Download completed!\n";
 
             // TODO: subscribe to progress updates
             this.ProgressStr.Text += "Starting installation...\n";
             await App.StoreManager.Installer.Install(this._app);
-            this.ProgressStr.Text += "Installation completed!\n";
 
             this.CancelBtn.Content = "Done";
             this.CancelBtn.Visibility = Visibility.Visible;

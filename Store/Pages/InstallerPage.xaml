@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Padding="10">
+    <Grid Padding="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="auto" />
@@ -31,7 +31,7 @@
                 <Border x:Name="AppImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
                     <Image x:Name="AppImg" Stretch="Uniform" Height="75" Width="75" />
                 </Border>
-                <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Stretch">
+                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Stretch">
                     <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">AppName</TextBlock>
                     <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}">AppAuthor</TextBlock>
                 </StackPanel>
