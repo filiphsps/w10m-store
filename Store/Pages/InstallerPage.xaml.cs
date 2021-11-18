@@ -36,18 +36,8 @@ namespace Store.Pages
             this.CancelBtn.Visibility = Visibility.Collapsed;
             this.ActionBtn.Visibility = Visibility.Collapsed;
 
-            // TODO: Utility function?
-            this.ProgressStr.Text += "Installing \"" + this._app.Title + "\"\n";
+            throw new NotImplementedException();
 
-            // TODO: subscribe to progress updates
-            this.ProgressStr.Text += "Staring download...\n";
-            await App.StoreManager.Downloader.Download(this._app);
-
-            // TODO: subscribe to progress updates
-            this.ProgressStr.Text += "Starting installation...\n";
-            await App.StoreManager.Installer.Install(this._app);
-
-            this.CancelBtn.Content = "Done";
             this.CancelBtn.Visibility = Visibility.Visible;
         }
 

@@ -36,13 +36,19 @@
                         </ListView.ItemContainerTransitions>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid Name="AppWrapper">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.25*" MaxWidth="85"/>
+                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="0.75*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Border x:Name="LogoImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                                    <Border
+                                        x:Name="LogoImgWrapper"
+                                        Grid.Column="0"
+                                        Width="85"
+                                        Height="85"
+                                        Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                                        >
                                         <Image x:Name="LogoImg" Stretch="Uniform">
                                             <Image.Source>
                                                 <Binding Path="LogoUrl" >

@@ -12,12 +12,12 @@
     <StackPanel Padding="12">
         <TextBlock Style="{ThemeResource HeaderTextBlockStyle}">:-(</TextBlock>
         <TextBlock x:Name="ErrorTitleMsg" Style="{ThemeResource HeaderTextBlockStyle}" Margin="0,5,0,0">It looks like something went wrong.</TextBlock>
-        <TextBlock x:Name="ErrorMsgStr" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,5,0,0">ErrorMessage</TextBlock>
-        <ScrollViewer  Margin="0,5,0,0" MaxHeight="120">
+        <TextBlock x:Name="ErrorMsgStr" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0">ErrorMessage</TextBlock>
+        <ScrollViewer  Margin="0,10,0,0" MaxHeight="120">
             <TextBlock x:Name="ErrorStackStr" Visibility="Collapsed"  Style="{ThemeResource CaptionTextBlockStyle}">ErrorStack</TextBlock>
         </ScrollViewer>
 
-        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+        <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
             <Button
                     x:Name="RetryBtn"
                     Click="RetryBtn_OnClick"

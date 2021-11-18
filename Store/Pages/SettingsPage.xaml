@@ -17,7 +17,7 @@
         </Style>
     </Page.Resources>
 
-    <Pivot Title="Settings">
+    <Pivot x:Name="RootPivot" Title="Settings" SelectionChanged="RootPivot_OnSelectionChanged">
         <PivotItem Header="Settings">
             <ScrollViewer>
                 <StackPanel>
@@ -70,14 +70,13 @@
             </StackPanel>
         </PivotItem>
     </Pivot>
-    
-    <!-- TODO: Hide when about is shown -->
+
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar x:Name="AppBar">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RemoveRepoBtn" Icon="Remove" Label="Remove Selected" IsEnabled="False" Click="RemoveRepoBtn_OnClick" />
-                <AppBarButton x:Name="AddRepoBtn" Icon="Add" Label="Add Repository" IsEnabled="False" />
-                <AppBarButton x:Name="EditRepoBtn" Icon="Edit" Label="Edit" IsEnabled="False" Visibility="Collapsed" />
+                <AppBarButton x:Name="AddRepoBtn" Icon="Add" Label="Add Repository" IsEnabled="False" Click="AddRepoBtn_OnClick" />
+                <AppBarButton x:Name="EditRepoBtn" Icon="Edit" Label="Edit" IsEnabled="False" Visibility="Collapsed" Click="EditRepoBtn_OnClick" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

@@ -20,19 +20,22 @@
         <PivotItem Header="Overview">
             <ScrollViewer ScrollViewer.VerticalScrollMode="Enabled">
                 <StackPanel>
-                    <Grid Margin="0,10,0,20">
+                    <Grid x:Name="DetailsWrapper" Margin="0,10,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="125"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*" MaxWidth="215" />
                         </Grid.ColumnDefinitions>
 
                         <Border x:Name="AppImgWrapper" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-                            <Image x:Name="AppImg" Stretch="Uniform" Height="130" Width="130" />
+                            <Image x:Name="AppImg" Stretch="Uniform" Height="125" Width="125" />
                         </Border>
-                        <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Stretch">
-                            <TextBlock x:Name="AppNameStr" Style="{ThemeResource SubtitleTextBlockStyle}">AppName</TextBlock>
-                            <TextBlock x:Name="AppAuthorStr" Style="{ThemeResource CaptionTextBlockStyle}" Tapped="AppAuthorStr_Tapped">AppAuthor</TextBlock>
-                            <Button x:Name="InstallBtn" HorizontalAlignment="Stretch" Margin="0,15,0,0" Click="InstallBtn_Click">Install</Button>
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="15,0,0,0"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch">
+                            <TextBlock x:Name="AppNameStr" FontSize="20" LineHeight="20" TextWrapping="Wrap">AppName</TextBlock>
+                            <TextBlock x:Name="AppAuthorStr" FontSize="14" LineHeight="14" TextWrapping="Wrap" Tapped="AppAuthorStr_Tapped">AppAuthor</TextBlock>
                         </StackPanel>
                     </Grid>
                     <TextBlock
@@ -91,4 +94,39 @@
             </ScrollViewer>
         </PivotItem>
     </Pivot>
+    <Page.BottomAppBar>
+        <CommandBar
+            IsDynamicOverflowEnabled="False"
+            HorizontalContentAlignment="Stretch">
+            <CommandBar.Content>
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="0"
+                        x:Name="InstallBtn"
+                        HorizontalContentAlignment="Center"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="7.5"
+                        Click="InstallBtn_Click">
+                        Install
+                    </Button>
+                    <Button
+                        Grid.Column="1"
+                        x:Name="ShareBtn"
+                        HorizontalContentAlignment="Center"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="7.5"
+                        Click="ShareBtn_OnClick">
+                        Share
+                    </Button>
+                </Grid>
+            </CommandBar.Content>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

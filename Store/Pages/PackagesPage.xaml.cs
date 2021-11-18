@@ -39,7 +39,7 @@ namespace Store.Pages {
 
         private void AllPkgsList_ItemClick(Object sender, ItemClickEventArgs e) {
             //this.lastItem = (Models.AppModel)e.ClickedItem;
-            this.AllPkgsList.PrepareConnectedAnimation("appLogoIn", e.ClickedItem, "LogoImgWrapper");
+            this.AllPkgsList.PrepareConnectedAnimation("appLogoIn", e.ClickedItem, "AppWrapper");
             this.Frame.Navigate(typeof(AppPage), (Models.AppModel)e.ClickedItem, new SuppressNavigationTransitionInfo());
         }
     }

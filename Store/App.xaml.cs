@@ -99,6 +99,7 @@ namespace Store {
         private void OnBackRequested(Object sender, BackRequestedEventArgs e) {
             var rootFrame = Window.Current.Content as Frame;
             if (!rootFrame.CanGoBack) {
+                Application.Current.Exit();
                 return;
             }
 

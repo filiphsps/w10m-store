@@ -16,21 +16,19 @@ namespace Store.Pages {
 
         public AppPage() {
             this.InitializeComponent();
-
-            // TODO: show error view if package is invalid
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             base.OnNavigatedTo(e);
 
             ConnectedAnimation animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("appLogoIn");
-            animation?.TryStart(this.AppImgWrapper);
+            animation?.TryStart(this.DetailsWrapper);
 
             this._app = (AppModel)e.Parameter;
 
             if (this._app == null) {
-                // TODO: show error
-                return;
+                // TODO: include details
+                throw new Exception("Invalid Application");
             }
 
             this.PrimaryPivot.Title = this._app.Title;
@@ -76,6 +74,10 @@ namespace Store.Pages {
 
         private void AppAuthorStr_Tapped(Object sender, TappedRoutedEventArgs e) {
             // TODO: Navigate to AuthorView
+        }
+
+        private void ShareBtn_OnClick(Object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
         }
     }
 }

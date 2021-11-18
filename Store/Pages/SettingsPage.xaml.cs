@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -36,8 +38,31 @@ namespace Store.Pages {
             this.RemoveRepoBtn.IsEnabled = true;
         }
 
-        private void RemoveRepoBtn_OnClick(Object sender, RoutedEventArgs e) {
+        private async void RemoveRepoBtn_OnClick(Object sender, RoutedEventArgs e) {
+            // ReSharper disable once InvertIf
+            if ((this.ReposList.Items?.Count ?? 0) - this.ReposList.SelectedItems.Count <= 1) {
+                var msg = new MessageDialog("You can't remove all repositories!");
+                await msg.ShowAsync();
+                return;
+            }
+
             throw new NotImplementedException();
+        }
+
+        private void EditRepoBtn_OnClick(Object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        private void AddRepoBtn_OnClick(Object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        private void RootPivot_OnSelectionChanged(Object sender, SelectionChangedEventArgs e) {
+            // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+            if (this.RootPivot.SelectedIndex == 0)
+                this.AppBar.ClosedDisplayMode = AppBarClosedDisplayMode.Compact;
+            else
+                this.AppBar.ClosedDisplayMode = AppBarClosedDisplayMode.Minimal;
         }
     }
 }
