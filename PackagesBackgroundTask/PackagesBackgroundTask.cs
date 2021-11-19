@@ -28,15 +28,15 @@ namespace PackagesBackgroundTask {
         }
 
         public static void UpdateTile(Object packages) {
-            // Create tile updater
+            // Create tile updater.
             TileUpdater updater = TileUpdateManager.CreateTileUpdaterForApplication();
             updater.EnableNotificationQueue(true);
             updater.Clear();
 
-            // Keep track of the number feed items that get tile notifications
+            // Keep track of the number feed items that get tile notifications.
             Int32 itemCount = 0;
 
-            // Randomize order
+            // Randomize order.
             var selectedPackages = (List<AppModel>)packages;
             var rnd = new Random();
             selectedPackages.OrderBy(item => rnd.Next());
@@ -62,7 +62,7 @@ namespace PackagesBackgroundTask {
 
                                     new AdaptiveText()
                                     {
-                                        Text = item.Description,
+                                        Text = item.Description.Replace("\n", " "), // TODO: do this properly.
                                         HintStyle = AdaptiveTextStyle.CaptionSubtle,
                                         HintWrap = true
                                     }
@@ -85,7 +85,7 @@ namespace PackagesBackgroundTask {
 
                                     new AdaptiveText()
                                     {
-                                        Text = item.Description.Replace("\n", " "), // TODO: do this properly
+                                        Text = item.Description.Replace("\n", " "), // TODO: do this properly.
                                         HintStyle = AdaptiveTextStyle.CaptionSubtle,
                                         HintWrap = true
                                     }
@@ -104,22 +104,22 @@ namespace PackagesBackgroundTask {
 
             // Set badge
             {
-                // Get the blank badge XML payload for a badge number
+                // Get the blank badge XML payload for a badge number.
                 XmlDocument badgeXml =
                     BadgeUpdateManager.GetTemplateContent(BadgeTemplateType.BadgeNumber);
 
-                // Set the value of the badge in the XML to our number
+                // Set the value of the badge in the XML to our number.
                 var badgeElement = badgeXml.SelectSingleNode("/badge") as XmlElement;
                 badgeElement?.SetAttribute("value", "0"); // TODO: get updateable packages count
 
-                // Create the badge notification
+                // Create the badge notification.
                 var badge = new BadgeNotification(badgeXml);
 
-                // Create the badge updater for the application
+                // Create the badge updater for the application.
                 BadgeUpdater badgeUpdater =
                     BadgeUpdateManager.CreateBadgeUpdaterForApplication();
 
-                // And update the badge
+                // And update the badge.
                 badgeUpdater.Update(badge);
             }
         }
