@@ -1,4 +1,5 @@
-﻿using Store.Models;
+﻿using StoreManager.Models;
+using StoreManager.Controllers;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

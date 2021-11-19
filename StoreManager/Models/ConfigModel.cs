@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace Store.Models {
-    internal sealed class ConfigModel {
+namespace StoreManager.Models {
+    public class ConfigModel {
         public List<RepositoryModel> Repositories;
     }
 }

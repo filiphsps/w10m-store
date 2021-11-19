@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 
-namespace Store.Models {
-    internal sealed class AppAuthor {
+namespace StoreManager.Models {
+    public class AppAuthor {
         public AppAuthor(String name, String role = "Contributor") {
             this.Name = name;
             this.Role = role;
@@ -13,7 +13,7 @@ namespace Store.Models {
         public String Role { get; }
     }
 
-    public sealed class AppDependency {
+    public class AppDependency {
         public AppDependency(String title, String ns, Version version) {
             this.Title = title;
             this.Namespace = ns;
@@ -25,7 +25,7 @@ namespace Store.Models {
         public Version Version { get; }
     }
 
-    internal sealed class AppModel {
+    public class AppModel {
         public AppModel(JObject data) {
             this.Id = (String)data["id"];
             // TODO: string can't be empty... sanity checks

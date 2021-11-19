@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Store.Models;
+﻿using StoreManager.Models;
+using System.Threading.Tasks;
 
-namespace Store.Controllers {
-    internal sealed class DownloadController {
+namespace StoreManager.Controllers {
+    public class DownloadController {
         private async Task extractArchive() { }
 
         public async Task Initialize() {

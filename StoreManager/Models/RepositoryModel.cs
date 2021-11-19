@@ -3,8 +3,8 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Store.Models {
-    internal sealed class RepositoryModel {
+namespace StoreManager.Models {
+    public class RepositoryModel {
         public RepositoryModel(String url) {
             this.Url = url;
 

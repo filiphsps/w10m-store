@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
+using StoreManager.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -46,7 +47,7 @@ namespace Store.Pages {
         private void AllPkgsList_ItemClick(Object sender, ItemClickEventArgs e) {
             //this.lastItem = (Models.AppModel)e.ClickedItem;
             this.AllPkgsList.PrepareConnectedAnimation("appLogoIn", e.ClickedItem, "AppWrapper");
-            this.Frame.Navigate(typeof(AppPage), (Models.AppModel)e.ClickedItem, new SuppressNavigationTransitionInfo());
+            this.Frame.Navigate(typeof(AppPage), (AppModel)e.ClickedItem, new SuppressNavigationTransitionInfo());
         }
 
         private async void DonateBtn_OnClick(Object sender, RoutedEventArgs e) {

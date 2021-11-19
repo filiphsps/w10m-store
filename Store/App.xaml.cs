@@ -5,7 +5,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Store.Controllers;
+using StoreManager.Controllers;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;

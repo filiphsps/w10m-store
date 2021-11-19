@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using StoreManager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net.Http;
-using Newtonsoft.Json.Linq;
-using Store.Models;
+using System.Threading.Tasks;
 
-namespace Store.Controllers {
-    internal sealed class StoreController {
+namespace StoreManager.Controllers {
+    public class StoreController {
         public StoreController() {
             this.Settings = new SettingsController();
             this.Downloader = new DownloadController();

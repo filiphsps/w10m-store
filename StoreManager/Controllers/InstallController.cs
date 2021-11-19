@@ -1,9 +1,8 @@
-﻿
+﻿using StoreManager.Models;
 using System.Threading.Tasks;
-using Store.Models;
 
-namespace Store.Controllers {
-    internal sealed class InstallController {
+namespace StoreManager.Controllers {
+    public class InstallController {
         public async Task Initialize() {
             
         }

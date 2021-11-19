@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
-using Store.Models;
+using StoreManager.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace Store.Controllers {
-    internal sealed class SettingsController {
+namespace StoreManager.Controllers {
+    public class SettingsController {
         // TODO: implementation cache
 
-        internal async Task Initialize() {
+        public async Task Initialize() {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             if (!localSettings.Values.ContainsKey("config")) {
@@ -25,11 +24,11 @@ namespace Store.Controllers {
             this.Config = JsonConvert.DeserializeObject<Models.ConfigModel>((String)localSettings.Values["config"]);
         }
 
-        internal async Task Save() {
+        public async Task Save() {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values["config"] = JsonConvert.SerializeObject(this.Config);
         }
 
-        internal Models.ConfigModel Config { get; private set; }
+        public Models.ConfigModel Config { get; private set; }
     }
 }
