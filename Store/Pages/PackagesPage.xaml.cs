@@ -13,7 +13,7 @@ namespace Store.Pages {
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     internal sealed partial class PackagesPage {
-        //private Models.AppModel lastItem;
+        //private Models.AppModel _lastItem;
 
         public PackagesPage() {
             this.InitializeComponent();
@@ -31,13 +31,11 @@ namespace Store.Pages {
             // Remove selection (hacky)
             this.AllPkgsList.SelectedItem = null;
 
-            /*
-             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("appLogoOut");
+            /* ConnectedAnimation animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("appLogoOut");
             if (animation != null)
             {
-                await AllPkgsList.TryStartConnectedAnimationAsync(animation, this.lastItem, "LogoImgWrapper");
-            } 
-            */
+                await this.AllPkgsList.TryStartConnectedAnimationAsync(animation, this._lastItem, "LogoImgWrapper");
+            } */
         }
 
         private void SettingsBtn_Click(Object sender, RoutedEventArgs e) {

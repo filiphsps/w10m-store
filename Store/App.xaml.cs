@@ -129,7 +129,7 @@ namespace Store {
                 return;
             }
 
-            rootFrame.GoBack(new EntranceNavigationTransitionInfo());
+            rootFrame.GoBack(new ContinuumNavigationTransitionInfo());
             e.Handled = true;
         }
 

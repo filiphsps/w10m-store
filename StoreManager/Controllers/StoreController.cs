@@ -18,6 +18,8 @@ namespace StoreManager.Controllers {
             this.Packages.Clear();
 
             foreach (RepositoryModel repo in this.Repositories) {
+                if (repo.Status != RepositoryModel.RepositoryStatus.Loaded) continue;
+
                 var client = new HttpClient();
                 HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.Url, "packages.json")));
                 var packages = JArray.Parse(await response.Content.ReadAsStringAsync());
@@ -39,6 +41,8 @@ namespace StoreManager.Controllers {
             this.Dependencies.Clear();
 
             foreach (RepositoryModel repo in this.Repositories) {
+                if (repo.Status != RepositoryModel.RepositoryStatus.Loaded) continue;
+
                 var client = new HttpClient();
                 HttpResponseMessage response = await client.GetAsync(new Uri(String.Concat(repo.Url, "dependencies.json")));
                 var dependencies = JArray.Parse(await response.Content.ReadAsStringAsync());

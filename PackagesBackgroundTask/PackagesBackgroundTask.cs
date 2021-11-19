@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Background;
 using Windows.Data.Xml.Dom;
@@ -32,19 +33,66 @@ namespace PackagesBackgroundTask {
             updater.EnableNotificationQueue(true);
             updater.Clear();
 
-            // Keep track of the number feed items that get tile notifications.
-
+            // Keep track of the number feed items that get tile notifications
             Int32 itemCount = 0;
+
+            // TODO: take 5 (or fewer) RANDOM packages
             foreach (AppModel item in (List<AppModel>)packages) {
                 // TODO: proper xml here, so we can handle all sizes
-                XmlDocument tileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWide310x150SmallImageAndText04);
+                var content = new TileContent() {
+                    Visual = new TileVisual() {
+                        Branding = TileBranding.NameAndLogo,
+                        TileMedium = new TileBinding() {
+                            Content = new TileBindingContentAdaptive() {
+                                PeekImage = new TilePeekImage() {
+                                    Source = item.LogoUrl
+                                },
+                                Children =
+                                {
+                                    new AdaptiveText()
+                                    {
+                                        Text = item.Title,
+                                        HintStyle = AdaptiveTextStyle.Base,
+                                        HintWrap = true
+                                    },
 
-                tileXml.GetElementsByTagName("text")[0].InnerText = item.Title;
-                tileXml.GetElementsByTagName("text")[1].InnerText = item.Description.Replace("\n\n", "\n").Replace("\n", " ");
-                ((XmlElement)tileXml.GetElementsByTagName("image")[0]).SetAttribute("src", item.LogoUrl);
+                                    new AdaptiveText()
+                                    {
+                                        Text = item.Description,
+                                        HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                        HintWrap = true
+                                    }
+                                }
+                            }
+                        },
+                        TileWide = new TileBinding() {
+                            Content = new TileBindingContentAdaptive() {
+                                PeekImage = new TilePeekImage() {
+                                    Source = item.LogoUrl
+                                },
+                                Children =
+                                {
+                                    new AdaptiveText()
+                                    {
+                                        Text = item.Title,
+                                        HintStyle = AdaptiveTextStyle.Base,
+                                        HintWrap = true
+                                    },
+
+                                    new AdaptiveText()
+                                    {
+                                        Text = item.Description.Replace("\n\n", "\n").Replace("\n", " "), // TODO: do this properly
+                                        HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                        HintWrap = true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
 
                 // Create a new tile notification.
-                updater.Update(new TileNotification(tileXml));
+                updater.Update(new TileNotification(content.GetXml()));
 
                 // Don't create more than 5 notifications.
                 if (itemCount++ > 5) break;
