@@ -36,8 +36,12 @@ namespace PackagesBackgroundTask {
             // Keep track of the number feed items that get tile notifications
             Int32 itemCount = 0;
 
-            // TODO: take 5 (or fewer) RANDOM packages
-            foreach (AppModel item in (List<AppModel>)packages) {
+            // Randomize order
+            var selectedPackages = (List<AppModel>)packages;
+            var rnd = new Random();
+            selectedPackages.OrderBy(item => rnd.Next());
+
+            foreach (AppModel item in selectedPackages) {
                 // TODO: proper xml here, so we can handle all sizes
                 var content = new TileContent() {
                     Visual = new TileVisual() {
@@ -52,7 +56,7 @@ namespace PackagesBackgroundTask {
                                     new AdaptiveText()
                                     {
                                         Text = item.Title,
-                                        HintStyle = AdaptiveTextStyle.Base,
+                                        HintStyle = AdaptiveTextStyle.Caption,
                                         HintWrap = true
                                     },
 
@@ -75,13 +79,13 @@ namespace PackagesBackgroundTask {
                                     new AdaptiveText()
                                     {
                                         Text = item.Title,
-                                        HintStyle = AdaptiveTextStyle.Base,
+                                        HintStyle = AdaptiveTextStyle.Caption,
                                         HintWrap = true
                                     },
 
                                     new AdaptiveText()
                                     {
-                                        Text = item.Description.Replace("\n\n", "\n").Replace("\n", " "), // TODO: do this properly
+                                        Text = item.Description.Replace("\n", " "), // TODO: do this properly
                                         HintStyle = AdaptiveTextStyle.CaptionSubtle,
                                         HintWrap = true
                                     }
